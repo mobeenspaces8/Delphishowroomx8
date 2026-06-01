@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delphi Ecosystem Showroom</title>
+    <!-- General Sans Font -->
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap"
+        rel="stylesheet">
+
+    <!-- Import Maps for Framer Modules -->
+    <script type="importmap">
+    {
+        "imports": {
+            "react": "https://esm.sh/react@18.2.0",
+            "react/jsx-runtime": "https://esm.sh/react@18.2.0/jsx-runtime",
+            "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+            "framer": "https://esm.sh/framer@2.4.1",
+            "framer-motion": "https://esm.sh/framer-motion@10.16.4"
+        }
+    }
+    </script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader-content">
+            <img src="Media/Delphi x AI.png" alt="Delphi x AI" class="loader-logo">
+            <div class="progress-bar-container">
+                <div id="progress-bar"></div>
+            </div>
+            <p id="loading-text">Loading Experience 0%</p>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <main id="main-container">
+        <!-- Canvas for Sequence Rendering -->
+        <div class="canvas-container">
+            <canvas id="hero-canvas"></canvas>
+
+            <!-- Interactive Layers overlaying the canvas -->
+
+            <!-- Section 2: Building Hitboxes -->
+            <div id="section-2-hitboxes" class="hidden">
+                <div class="hitbox building-left" data-target="left"><span class="building-label">AI Showroom</span>
+                </div>
+                <div class="hitbox building-center" data-target="center"><span class="building-label">Tower</span></div>
+                <div class="hitbox building-right" data-target="right"><span class="building-label">Manufacturing
+                        Tower</span></div>
+            </div>
+
+            <!-- Section 4: Services UI -->
+            <div id="section-4-services" class="hidden">
+                <div class="service-grid">
+                    <div class="service-card" data-index="1"></div>
+                    <div class="service-card" data-index="2"></div>
+                    <div class="service-card" data-index="3"></div>
+                    <div class="service-card" data-index="4"></div>
+                    <div class="service-card" data-index="5"></div>
+                    <div class="service-card" data-index="6"></div>
+                    <div class="service-card" data-index="7"></div>
+                    <div class="service-card" data-index="8"></div>
+                    <div class="service-card" data-index="9"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll spacer to allow scrolling for the first section -->
+        <div id="scroll-spacer"></div>
+    </main>
+
+    <!-- Section 5: Healthcare UI Container (Hidden by default) -->
+    <div id="healthcare-ui-container" class="hidden">
+        <!-- Futuristic Particle Background -->
+        <canvas id="particle-canvas"></canvas>
+
+        <!-- Screen 1: Landing Page -->
+        <section id="screen-landing">
+            <header class="hc-header universal-header">
+                <div class="header-left">
+                    <div class="logo" style="cursor: pointer;" onclick="showHealthcareDetails()">
+                        <img src="Media/Delphi x AI.png" alt="Delphi x AI" style="height: 40px; display: block; object-fit: contain;">
+                    </div>
+                    <div class="nav-pills">
+                        <button class="action-btn btn-secondary back-page-btn" style="padding: 6px 16px; border-radius: 20px; font-size: 0.85rem;" onclick="goBackOneScreen()">Back Page</button>
+                    </div>
+                </div>
+
+                <div class="header-center">
+                    <div class="search-bar-container">
+                        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        <input type="text" placeholder="Search anything..." class="global-search-input">
+                        <span class="shortcut-key">⌘K</span>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <div class="utility-icons">
+                        <button class="icon-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></button>
+                        <div class="user-profile-container">
+                            <button class="user-profile-btn icon-btn" style="border: none; background: transparent; padding: 0; width: auto; height: auto;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            </button>
+                            <div class="profile-dropdown">
+                                <label class="admin-toggle">
+                                    <input type="checkbox" class="admin-checkbox" onchange="document.getElementById('btn-admin-toggle').click()">
+                                    <span class="toggle-slider"></span>
+                                    Admin Enable
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="back-to-showroom" class="back-btn outlined-cta">Back to Showroom</button>
+                </div>
+            </header>
+
+            <div class="hc-hero landing-hero">
+                <div class="hero-left-col">
+                    <h1>Healthcare Capabilities</h1>
+                    <div class="breadcrumbs-pill">
+                        <span class="bc-link" data-target="showroom">Home</span> 
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+                        <span class="bc-link" data-target="showroom">Industries</span>
+                        <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+                        <span class="current">Healthcare</span>
+                    </div>
+                    <p>Drive better patient outcomes, smarter operations, secure compliance, and faster digital transformation across the healthcare ecosystem with AI-powered capabilities.</p>
+
+                    <div class="hc-tabs">
+                        <button class="tab active">Explore Use Cases <span class="arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button>
+                        <button class="tab"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg></span> Data Models</button>
+                        <button class="tab"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></span> Frameworks</button>
+                        <button class="tab"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Best Practices</button>
+                    </div>
+                </div>
+                <div class="hero-right-col">
+                    <img src="Media/hero_medical_cross.png" alt="3D Glowing Medical Cross" class="hero-3d-visual">
+                </div>
+            </div>
+
+            <div class="hc-content-area">
+                <div class="capabilities-section">
+                    <div class="cap-header">
+                        <h2><span class="dot"></span> Featured Healthcare Capabilities</h2>
+                        <button class="view-all">View All Capabilities</button>
+                    </div>
+                    <div class="cap-grid" id="capabilities-grid">
+                        <!-- Capability cards will be injected by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 2: Clinical Details -->
+        <section id="screen-clinical" class="hidden">
+            <header class="hc-header universal-header">
+                <div class="header-left">
+                    <div class="logo" style="cursor: pointer;" onclick="showHealthcareDetails()">
+                        <img src="Media/Delphi x AI.png" alt="Delphi x AI" style="height: 40px; display: block; object-fit: contain;">
+                    </div>
+                    <div class="nav-pills">
+                        <button class="action-btn btn-secondary back-page-btn" style="padding: 6px 16px; border-radius: 20px; font-size: 0.85rem;" onclick="goBackOneScreen()">Back Page</button>
+                    </div>
+                </div>
+
+                <div class="header-center">
+                    <div class="search-bar-container">
+                        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        <input type="text" placeholder="Search anything..." class="global-search-input">
+                        <span class="shortcut-key">⌘K</span>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <div class="utility-icons">
+                        <button class="icon-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></button>
+                        <div class="user-profile-container">
+                            <button class="user-profile-btn icon-btn" style="border: none; background: transparent; padding: 0; width: auto; height: auto;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            </button>
+                            <div class="profile-dropdown">
+                                <label class="admin-toggle">
+                                    <input type="checkbox" class="admin-checkbox" onchange="document.getElementById('btn-admin-toggle').click()">
+                                    <span class="toggle-slider"></span>
+                                    Admin Enable
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="back-btn outlined-cta">Back to Showroom</button>
+                </div>
+            </header>
+
+            <div class="hc-hero">
+                <h1 id="clinical-hero-title">Clinical Document Intelligence</h1>
+                <div class="breadcrumbs-pill">
+                    <span class="bc-link" data-target="showroom">Home</span>
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+                    <span class="bc-link" data-target="landing">Healthcare</span>
+                    <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+                    <span class="current" id="bc-clinical-name">Overview</span>
+                </div>
+                <p id="clinical-hero-desc">Turn unstructured clinical documents into validated, structured insights for
+                    faster and more accurate care decisions.</p>
+            </div>
+
+            <div class="clinical-content">
+                <div class="sidebar">
+                    <button class="side-btn active"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg></span> All Use Cases</button>
+                    <button class="side-btn"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg></span> Revenue Cycle</button>
+                    <button class="side-btn highlight"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span> Clinical Operations</button>
+                    <button class="side-btn"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg></span> Patient Access</button>
+                    <button class="side-btn"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Quality & Compliance</button>
+                </div>
+                <div class="main-panel">
+                    <div class="filters">
+                        <input type="text" placeholder="Search Use Case.." id="search-use-case" class="search-use-case">
+                        <select id="filter-category">
+                            <option value="all">All Categories</option>
+                            <option value="operational">Operational</option>
+                            <option value="clinical">Clinical</option>
+                            <option value="financial">Financial</option>
+                        </select>
+                        <select id="filter-workflow">
+                            <option value="all">All Workflows</option>
+                            <option value="patient-intake">Patient Intake</option>
+                            <option value="billing">Billing & Claims</option>
+                            <option value="care-delivery">Care Delivery</option>
+                        </select>
+                    </div>
+                    <div class="use-case-grid" id="use-cases-grid">
+                        <!-- Use cases injected by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 3: Solution Deep Dive -->
+        <section id="screen-deep-dive" class="hidden">
+            <header class="hc-header universal-header">
+                <div class="header-left">
+                    <div class="logo" style="cursor: pointer;" onclick="showHealthcareDetails()">
+                        <img src="Media/Delphi x AI.png" alt="Delphi x AI" style="height: 40px; display: block; object-fit: contain;">
+                    </div>
+                    <div class="nav-pills">
+                        <button class="action-btn btn-secondary back-page-btn" style="padding: 6px 16px; border-radius: 20px; font-size: 0.85rem;" onclick="goBackOneScreen()">Back Page</button>
+                    </div>
+                </div>
+
+                <div class="header-center">
+                    <div class="search-bar-container">
+                        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        <input type="text" placeholder="Search anything..." class="global-search-input">
+                        <span class="shortcut-key">⌘K</span>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <div class="utility-icons">
+                        <button class="icon-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></button>
+                        <div class="user-profile-container">
+                            <button class="user-profile-btn icon-btn" style="border: none; background: transparent; padding: 0; width: auto; height: auto;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            </button>
+                            <div class="profile-dropdown">
+                                <label class="admin-toggle">
+                                    <input type="checkbox" class="admin-checkbox" onchange="document.getElementById('btn-admin-toggle').click()">
+                                    <span class="toggle-slider"></span>
+                                    Admin Enable
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="back-btn outlined-cta">Back to Showroom</button>
+                </div>
+            </header>
+
+            <div class="top-action-bar" style="justify-content: flex-start; margin-top: 20px; padding: 0 80px;">
+                <button class="action-btn">Try Demo</button>
+                <button class="action-btn btn-secondary">View Prototype</button>
+                <button class="action-btn btn-secondary">Watch Video</button>
+                <button class="action-btn">Gallery</button>
+            </div>
+
+            <div class="deep-dive-hero">
+                <button class="nav-btn" id="btn-prev-clinical" style="margin: 0 0 20px 0; display: flex;"><span
+                        class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></span> Back to Use Cases</button>
+                <h1 id="deep-dive-title">Use Case Title</h1>
+                <p id="deep-dive-subtitle">Use case subtitle/description goes here.</p>
+            </div>
+
+            <!-- Tabbed Interface -->
+            <div class="deep-dive-tabs">
+                <button class="dd-tab active" data-tab="overview">Overview</button>
+                <button class="dd-tab" data-tab="process">Process</button>
+                <button class="dd-tab" data-tab="tech-arch">Tech Architecture</button>
+                <button class="dd-tab" data-tab="engine-map">Engine Map / AI Flow</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="deep-dive-content">
+                <div id="tab-overview" class="tab-pane active">
+                    <div class="overview-new-layout">
+                        <!-- Section 1 -->
+                        <div class="overview-sec sec-1">
+                            <div class="sec-1-left">
+                                <h2 class="sec-title">We Balance Business Objectives with Customer needs</h2>
+                                <div class="subtitle-buttons">
+                                    <button class="action-btn">Digital Experiences</button>
+                                    <button class="action-btn">Innovative Design</button>
+                                    <button class="action-btn">Cutting-edge Tech</button>
+                                </div>
+                            </div>
+                            <div class="sec-1-right">
+                                <div class="kpi-box">
+                                    <h3 class="kpi-num" data-val="100">0</h3><span class="kpi-suffix">%</span>
+                                    <p class="kpi-label">Engagement</p>
+                                </div>
+                                <div class="kpi-box">
+                                    <h3 class="kpi-num" data-val="10">0</h3><span class="kpi-suffix">x</span>
+                                    <p class="kpi-label">ROI Boost</p>
+                                </div>
+                                <div class="kpi-box">
+                                    <h3 class="kpi-num" data-val="50">0</h3><span class="kpi-suffix">+</span>
+                                    <p class="kpi-label">Projects</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 2 -->
+                        <div class="overview-sec sec-2">
+                            <div class="full-width-img" style="background-image: url('Media/Healthcare\\ Services/3.\\ Shawroom-\\ Overview.jpg');"></div>
+                            <div class="sec-2-text">
+                                <h3>Strategic Implementation</h3>
+                                <p>Driving growth through data-driven methodologies and AI-powered capabilities.</p>
+                            </div>
+                        </div>
+
+                        <!-- Section 3 -->
+                        <div class="overview-sec sec-3">
+                            <div class="sec-3-grid">
+                                <div class="sec-3-item">
+                                    <h4>01. Executive Summary</h4>
+                                    <p>Brief overview of the main points, interactive stats, and key findings that drive the process.</p>
+                                </div>
+                                <div class="sec-3-item">
+                                    <h4>02. Problem</h4>
+                                    <p>The core challenge or bottleneck faced by the business and the customer in the current landscape.</p>
+                                </div>
+                                <div class="sec-3-item">
+                                    <h4>03. Solution</h4>
+                                    <p>How our AI-powered capabilities and strategic design resolve these critical problems effectively.</p>
+                                </div>
+                                <div class="sec-3-item">
+                                    <h4>04. Outcome</h4>
+                                    <p>Measurable improvements in engagement, operational efficiency, and overall customer satisfaction.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="overview-sec sec-4">
+                            <h3 class="sec-heading">View Image Library</h3>
+                            <div class="custom-carousel-wrapper">
+                                <button class="carousel-nav-btn prev-btn" id="library-prev"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+                                <div class="custom-carousel-track" id="library-track">
+                                    <img src="Media/Card Images/Card Image 1.jpg" alt="Library Image 1" class="carousel-item">
+                                    <img src="Media/Card Images/Card Image 2.jpg" alt="Library Image 2" class="carousel-item">
+                                    <img src="Media/Card Images/Card Image 3.jpg" alt="Library Image 3" class="carousel-item">
+                                    <img src="Media/Card Images/Card Image 4.jpg" alt="Library Image 4" class="carousel-item">
+                                    <img src="Media/Card Images/Card Image 5.jpg" alt="Library Image 5" class="carousel-item">
+                                </div>
+                                <button class="carousel-nav-btn next-btn" id="library-next"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+                            </div>
+                        </div>
+
+                        <!-- Section 5 -->
+                        <div class="overview-sec sec-5">
+                            <h3 class="sec-heading">Stories Shared by Client</h3>
+                            <div id="framer-testimonial-reel-container-static" style="width: 100%; height: 400px; position: relative;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab-process" class="tab-pane hidden">
+                    <div class="placeholder-box"
+                        style="background-image: url('Media/Healthcare\\ Services/4.\\ Shawroom-\\ Process.jpg'); background-size: cover; background-position: center;">
+                        <span
+                            style="background: rgba(0,0,0,0.5); padding: 10px 20px; border-radius: 10px; color: #fff;">Process
+                            Timeline</span>
+                    </div>
+                </div>
+                <div id="tab-tech-arch" class="tab-pane hidden">
+                    <div class="placeholder-box"
+                        style="background-image: url('Media/Healthcare\\ Services/5.\\ Shawroom-\\ Tech\\ Architecture.jpg'); background-size: cover; background-position: center;">
+                        <span
+                            style="background: rgba(0,0,0,0.5); padding: 10px 20px; border-radius: 10px; color: #fff;">Tech
+                            Architecture Diagram</span>
+                    </div>
+                </div>
+                <div id="tab-engine-map" class="tab-pane hidden">
+                    <div class="placeholder-box"
+                        style="background-image: url('Media/Healthcare\\ Services/6.\\ Shawroom-\\ Engine\\ Map.jpg'); background-size: cover; background-position: center;">
+                        <span
+                            style="background: rgba(0,0,0,0.5); padding: 10px 20px; border-radius: 10px; color: #fff;">Engine
+                            Map / AI Flow</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Admin Controls -->
+    <div id="admin-controls" class="floating-admin">
+        <button id="btn-admin-toggle" class="admin-btn">Admin: OFF</button>
+    </div>
+
+    <!-- CMS Modal -->
+    <div id="cms-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 id="cms-modal-title">Edit Item</h2>
+            <form id="cms-form">
+                <input type="hidden" id="cms-id">
+                <input type="hidden" id="cms-type"> <!-- 'cap' or 'uc' -->
+
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="cms-title" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="cms-desc" required rows="4"></textarea>
+                </div>
+
+                <!-- Fields for Use Cases Only -->
+                <div id="cms-uc-fields" class="hidden">
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="cms-category">
+                            <option value="operational">Operational</option>
+                            <option value="clinical">Clinical</option>
+                            <option value="financial">Financial</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Workflow</label>
+                        <select id="cms-workflow">
+                            <option value="patient-intake">Patient Intake</option>
+                            <option value="billing">Billing & Claims</option>
+                            <option value="care-delivery">Care Delivery</option>
+                            <option value="all">All</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Section</label>
+                        <select id="cms-section">
+                            <option value="revenue-cycle">Revenue Cycle</option>
+                            <option value="clinical-ops">Clinical Operations</option>
+                            <option value="patient-access">Patient Access</option>
+                            <option value="quality">Quality & Compliance</option>
+                            <option value="all">All</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" id="cms-cancel" class="cancel-btn">Cancel</button>
+                    <button type="submit" id="cms-save" class="save-btn">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom Script -->
+    <!-- Lightbox Modal for Fullscreen Image View -->
+    <div id="image-lightbox" class="lightbox-modal hidden">
+        <button id="lightbox-close" class="lightbox-close-btn">&times;</button>
+        <img id="lightbox-img" src="" alt="Fullscreen View">
+        <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
