@@ -4138,3 +4138,17 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     opacity: 1 !important;
     filter: blur(12px) !important;
 }
+
+/* --- GlowingBeam Button Effect (Secondary Buttons) --- */
+.action-btn.btn-secondary:not(.active):hover {
+    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.15), 0 15px 35px -10px rgba(255, 255, 255, 0.1) !important;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+.action-btn.btn-secondary:not(.active):hover::after {
+    opacity: 1;
+    animation: beamGlareSweep 2s infinite linear;
+}
+.action-btn.btn-secondary:not(.active):hover::before {
+    opacity: 0.6 !important;
+    filter: blur(10px) !important;
+}
