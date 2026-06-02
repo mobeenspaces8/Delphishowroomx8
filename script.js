@@ -652,13 +652,76 @@ document.addEventListener('keydown', (e) => {
 document.querySelectorAll('.dd-tab').forEach(tab => {
     tab.addEventListener('click', () => {
         document.querySelectorAll('.dd-tab').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        
         document.querySelectorAll('.tab-pane').forEach(p => p.classList.add('hidden'));
-        const pane = document.getElementById(`tab-${tab.dataset.tab}`);
-        if (pane) pane.classList.remove('hidden');
+        
+        tab.classList.add('active');
+        const target = document.getElementById(`tab-${tab.dataset.tab}`);
+        if (target) target.classList.remove('hidden');
     });
 });
+
+// Practices Page Tabs Logic
+document.querySelectorAll('.prac-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        // Remove active class from all tabs
+        document.querySelectorAll('.prac-tab').forEach(t => t.classList.remove('active'));
+        // Hide all tab contents
+        document.querySelectorAll('.prac-tab-content').forEach(p => p.classList.add('hidden'));
+        
+        // Activate clicked tab
+        tab.classList.add('active');
+        const target = document.getElementById(tab.dataset.tab);
+        if (target) {
+            target.classList.remove('hidden');
+            target.classList.add('active'); // trigger CSS animation
+        }
+    });
+});
+
+// Practices Light Gallery Logic
+function updateLightFeatured(element, src, type) {
+    // Update active state
+    document.querySelectorAll('.light-thumb').forEach(t => t.classList.remove('active-thumb'));
+    if(element) element.classList.add('active-thumb');
+    
+    // Update main image display
+    const featuredContainer = document.getElementById('light-featured-container');
+    if(!featuredContainer) return;
+    
+    // Apply fade out animation
+    featuredContainer.classList.add('fade-anim');
+    
+    setTimeout(() => {
+        if (type === 'video') {
+            featuredContainer.innerHTML = `
+                <video id="light-featured-image" src="${src}" autoplay muted loop style="width:100%; height:100%; object-fit:cover;"></video>
+                <div class="light-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></div>
+                <div class="watermark-logo">Delphi Process</div>
+            `;
+            featuredContainer.onclick = () => openLightbox(src, 'video');
+        } else {
+            featuredContainer.innerHTML = `
+                <img id="light-featured-image" src="${src}" alt="Design Process" style="width:100%; height:100%; object-fit:cover;">
+                <div class="light-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+                <div class="watermark-logo">Delphi Process</div>
+            `;
+            featuredContainer.onclick = () => openLightbox(src, 'image');
+        }
+        
+        // Remove fade out to trigger fade in
+        setTimeout(() => {
+            featuredContainer.classList.remove('fade-anim');
+        }, 50);
+    }, 300);
+}
+
+function scrollLightGallery(direction) {
+    const track = document.getElementById('light-scroll-track');
+    if(track) {
+        // Scroll by 2 thumbnail widths approx (160px + gap) * 2 = 350px
+        track.scrollBy({ left: direction * 350, behavior: 'smooth' });
+    }
+}
 
 // --- CMS Admin Logic --- //
 const btnAdminToggle = document.getElementById('btn-admin-toggle');

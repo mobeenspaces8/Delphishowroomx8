@@ -133,7 +133,7 @@
                     <p>Drive better patient outcomes, smarter operations, secure compliance, and faster digital transformation across the healthcare ecosystem with AI-powered capabilities.</p>
                     <div class="quick-links">
                         <button class="quick-link-btn" onclick="openScreen('screen-data-models')">Data Models</button>
-                        <button class="quick-link-btn" onclick="openScreen('screen-frameworks')">Frameworks</button>
+                        <button class="quick-link-btn" onclick="openScreen('screen-practices')">Frameworks</button>
                         <button class="quick-link-btn" onclick="openScreen('screen-best-practices')">Best Practices</button>
                     </div>
                 </div>
@@ -208,11 +208,230 @@
                 <button class="action-btn" onclick="goBackOneScreen()">Go Back</button>
             </div>
         </section>
-        <section id="screen-frameworks" class="hidden">
-            <div class="placeholder-content">
-                <h2>Frameworks</h2>
-                <p>Coming Soon. This section is currently under development.</p>
-                <button class="action-btn" onclick="goBackOneScreen()">Go Back</button>
+        <section id="screen-practices" class="screen hidden light-theme">
+            <!-- Practices Top Navigation -->
+            <div class="prac-top-nav">
+                <div class="prac-nav-left">
+                    <div class="prac-logo">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="#e94c17"><path d="M12 2L2 22h20L12 2zm0 4.5l6.5 13h-13L12 6.5z"/></svg>
+                        <span>Delphi</span>
+                    </div>
+                </div>
+                <div class="prac-nav-right">
+                    <button class="prac-nav-link" onclick="openScreen('screen-landing')">Home</button>
+                    <button class="prac-nav-link">Matrix Map</button>
+                    <button class="prac-nav-link active">Practices</button>
+                    <button class="prac-nav-link">Admin</button>
+                    <div class="prac-avatar">
+                        <img src="Media/Card Images/Card Image 1.jpg" alt="User">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practices Layout Split -->
+            <div class="prac-layout">
+                <!-- Left Sidebar -->
+                <div class="prac-sidebar">
+                    <div class="prac-sidebar-title">
+                        <span>OUR DISCIPLINES</span>
+                        <h3>Practices</h3>
+                    </div>
+                    <div class="prac-sidebar-menu">
+                        <button class="prac-menu-item active">Experience Design</button>
+                        <button class="prac-menu-item">Product Owner & Business Analysis</button>
+                        <button class="prac-menu-item">Data Functional</button>
+                        <button class="prac-menu-item">Data Engineering</button>
+                        <button class="prac-menu-item">AI / ML Engineering</button>
+                        <button class="prac-menu-item">Solution Architecture</button>
+                        <button class="prac-menu-item">Quality Engineering</button>
+                        <button class="prac-menu-item">Project Management</button>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="prac-main">
+                    <div class="prac-header">
+                        <div class="prac-header-top">
+                            <h2>Experience Design</h2>
+                            <span class="prac-badge">12 Members</span>
+                        </div>
+                        <p class="prac-description">We design enterprise-grade product experiences that translate complex domain workflows into intuitive interfaces — combining research, systems thinking, and AI-native interaction patterns to accelerate adoption across our clients' organizations.</p>
+                        
+                        <div class="prac-tabs">
+                            <button class="prac-tab active" data-tab="prac-frameworks">Frameworks</button>
+                            <button class="prac-tab" data-tab="prac-best-practices">Best Practices</button>
+                            <button class="prac-tab" data-tab="prac-ai-infusion">AI Infusion</button>
+                        </div>
+                    </div>
+
+                    <div class="prac-content-area">
+                        <!-- Tab 1: Frameworks -->
+                        <div id="prac-frameworks" class="prac-tab-content active">
+                            <div class="prac-section-header">
+                                <h3>Design Frameworks We Own</h3>
+                                <p>Six battle-tested frameworks our team applies across enterprise UX engagements — refined through 50+ projects spanning healthcare, financial services, and government.</p>
+                            </div>
+                            
+                            <div class="framework-list">
+                                <div class="framework-card">
+                                    <div class="fw-number">01</div>
+                                    <div class="fw-details">
+                                        <h4>Domain-First Research Loop</h4>
+                                        <p>Embed with operators to map actual workflows. Interview 8–12 users per role, observe live sessions, and codify findings into a domain dictionary that anchors every design decision downstream.</p>
+                                    </div>
+                                    <button class="fw-download-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+                                </div>
+                                
+                                <div class="framework-card">
+                                    <div class="fw-number">02</div>
+                                    <div class="fw-details">
+                                        <h4>AI-Native Interaction Patterns</h4>
+                                        <p>A library of 30+ patterns covering conversational interfaces, agentic flows, human-in-the-loop reviews, and trust-building micro-interactions. Each pattern ships with do/don’t examples and code-ready specs.</p>
+                                    </div>
+                                    <button class="fw-download-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+                                </div>
+                                
+                                <div class="framework-card">
+                                    <div class="fw-number">03</div>
+                                    <div class="fw-details">
+                                        <h4>Enterprise Design System Kit</h4>
+                                        <p>Token-driven foundation covering color, type, spacing, motion, and elevation. Built on auto-layout with variants for light/dark and density modes. Includes production-ready components with Code Connect mappings.</p>
+                                    </div>
+                                    <button class="fw-download-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+                                </div>
+                                
+                                <div class="framework-card">
+                                    <div class="fw-number">04</div>
+                                    <div class="fw-details">
+                                        <h4>Workflow Decomposition Canvas</h4>
+                                        <p>A structured method to break a complex business process into atomic decision points, surface AI intervention opportunities, and prioritize based on volume, friction, and accuracy lift.</p>
+                                    </div>
+                                    <button class="fw-download-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab 2: Best Practices -->
+                        <div id="prac-best-practices" class="prac-tab-content hidden">
+                            <div class="prac-section-header">
+                                <h3>Best Practices We Push For Adoption</h3>
+                                <p>Operating principles every designer in the practice follows — refined through repeated client engagements and codified so new hires ramp fast and outputs stay consistent.</p>
+                            </div>
+                            
+                            <div class="bp-checklist">
+                                <div class="bp-item">
+                                    <div class="bp-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="#22c55e" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="9 12 11 14 15 10"></polyline></svg></div>
+                                    <div class="bp-details">
+                                        <h4>Start with the operator, not the org chart</h4>
+                                        <p>Every project opens with a minimum 5 days of shadowing actual end-users. No persona is drafted without observed behavior to back it up.</p>
+                                    </div>
+                                </div>
+                                <div class="bp-item">
+                                    <div class="bp-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="#22c55e" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="9 12 11 14 15 10"></polyline></svg></div>
+                                    <div class="bp-details">
+                                        <h4>Ship a clickable prototype within 2 weeks</h4>
+                                        <p>Wireframes lose stakeholder attention. A working prototype — even rough — closes alignment loops 3x faster and surfaces edge cases earlier.</p>
+                                    </div>
+                                </div>
+                                <div class="bp-item">
+                                    <div class="bp-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="#22c55e" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="9 12 11 14 15 10"></polyline></svg></div>
+                                    <div class="bp-details">
+                                        <h4>Design tokens before screens</h4>
+                                        <p>Color, type, spacing, motion, and elevation are locked in week one. This prevents the late-stage scramble where 40 screens need re-tuning.</p>
+                                    </div>
+                                </div>
+                                <div class="bp-item">
+                                    <div class="bp-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="#22c55e" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="9 12 11 14 15 10"></polyline></svg></div>
+                                    <div class="bp-details">
+                                        <h4>Accessibility is not a phase</h4>
+                                        <p>WCAG AA contrast, keyboard navigation, and screen reader semantics are reviewed in every weekly design crit — not bolted on at handoff.</p>
+                                    </div>
+                                </div>
+                                <div class="bp-item">
+                                    <div class="bp-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="#22c55e" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="9 12 11 14 15 10"></polyline></svg></div>
+                                    <div class="bp-details">
+                                        <h4>Document the why, not just the what</h4>
+                                        <p>Every Figma file has a decision log frame. Future designers and AI tools need to understand the reasoning behind a pattern to evolve it correctly.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab 3: AI Infusion -->
+                        <div id="prac-ai-infusion" class="prac-tab-content hidden">
+                            <div class="prac-section-header">
+                                <h3>Impact of AI Infusion</h3>
+                            </div>
+                            
+                            <!-- Metric Cards -->
+                            <div class="metric-grid">
+                                <div class="metric-card">
+                                    <div class="metric-value">3.2x</div>
+                                    <div class="metric-label">FASTER PROTOTYPING</div>
+                                    <p class="metric-desc">AI-assisted design generation cuts ideation-to-wireframe cycle from weeks to days.</p>
+                                </div>
+                                <div class="metric-card">
+                                    <div class="metric-value">40%</div>
+                                    <div class="metric-label">FEWER REVISIONS</div>
+                                    <p class="metric-desc">Domain-trained AI catches usability issues early, reducing costly late-stage rework.</p>
+                                </div>
+                                <div class="metric-card">
+                                    <div class="metric-value">92%</div>
+                                    <div class="metric-label">ADOPTION RATE</div>
+                                    <p class="metric-desc">Interfaces shaped by AI-native patterns see higher first-month user activation.</p>
+                                </div>
+                                <div class="metric-card">
+                                    <div class="metric-value">60%</div>
+                                    <div class="metric-label">TIME SAVED</div>
+                                    <p class="metric-desc">Automated design QA and token validation free designers for higher-order thinking.</p>
+                                </div>
+                            </div>
+
+                            <div class="prac-section-header" style="margin-top: 40px;">
+                                <h3>AI Infusion in Experience Design</h3>
+                                <p>A visual walkthrough of how AI shows up in our day-to-day design process — from research synthesis to handoff.</p>
+                            </div>
+
+                            <!-- Light Cinematic Gallery -->
+                            <div class="light-gallery-container">
+                                <div class="light-main-image" id="light-featured-container" onclick="openLightbox('Media/Card Images/Card Image 1.jpg', 'image')">
+                                    <img id="light-featured-image" src="Media/Card Images/Card Image 1.jpg" alt="Design Process" style="width:100%; height:100%; object-fit:cover;">
+                                    <div class="light-overlay">
+                                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                                    </div>
+                                    <div class="watermark-logo">Delphi Process</div>
+                                </div>
+                                
+                                <div class="light-thumbnail-wrapper">
+                                    <button class="light-nav-btn" onclick="scrollLightGallery(-1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+                                    <div class="light-scroll-track" id="light-scroll-track">
+                                        <div class="light-thumb active-thumb" onclick="updateLightFeatured(this, 'Media/Card Images/Card Image 1.jpg', 'image')">
+                                            <img src="Media/Card Images/Card Image 1.jpg" alt="Thumb 1">
+                                            <div class="thumb-label">01 - Kickoff</div>
+                                        </div>
+                                        <div class="light-thumb" onclick="updateLightFeatured(this, 'Media/Card Images/Card Image 2.jpg', 'image')">
+                                            <img src="Media/Card Images/Card Image 2.jpg" alt="Thumb 2">
+                                            <div class="thumb-label">02 - Research</div>
+                                        </div>
+                                        <div class="light-thumb" onclick="updateLightFeatured(this, 'Media/Card Images/Card Image 3.jpg', 'image')">
+                                            <img src="Media/Card Images/Card Image 3.jpg" alt="Thumb 3">
+                                            <div class="thumb-label">03 - Mapping</div>
+                                        </div>
+                                        <div class="light-thumb" onclick="updateLightFeatured(this, 'Media/Card Images/Card Image 4.jpg', 'image')">
+                                            <img src="Media/Card Images/Card Image 4.jpg" alt="Thumb 4">
+                                            <div class="thumb-label">04 - System</div>
+                                        </div>
+                                        <div class="light-thumb" onclick="updateLightFeatured(this, 'Media/Card Images/Card Image 5.jpg', 'image')">
+                                            <img src="Media/Card Images/Card Image 5.jpg" alt="Thumb 5">
+                                            <div class="thumb-label">05 - Wireframes</div>
+                                        </div>
+                                    </div>
+                                    <button class="light-nav-btn" onclick="scrollLightGallery(1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         <section id="screen-best-practices" class="hidden">

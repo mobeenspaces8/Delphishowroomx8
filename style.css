@@ -3282,3 +3282,405 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
         width: 100%;
     }
 }
+
+
+/* ==============================================
+   PRACTICES PAGE (LIGHT THEME)
+   ============================================== */
+
+/* Light Theme Container */
+.light-theme {
+    --bg-color: #f8f9fb;
+    --card-bg: #ffffff;
+    --text-main: #1a1f2e;
+    --text-muted: #64748b;
+    --border-light: rgba(0, 0, 0, 0.08);
+    --shadow-soft: 0 4px 20px rgba(0,0,0,0.05);
+    --shadow-hover: 0 10px 30px rgba(0,0,0,0.08);
+    --accent-orange: #e94c17;
+    background: var(--bg-color);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 1. Top Navigation */
+.prac-top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    margin: 20px auto;
+    width: 95%;
+    max-width: 1400px;
+    padding: 12px 24px;
+    border-radius: 50px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--border-light);
+    position: relative;
+}
+
+.prac-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--text-main);
+}
+
+.prac-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.prac-nav-link {
+    background: none;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    position: relative;
+    padding: 8px 0;
+    transition: color 0.2s ease;
+}
+
+.prac-nav-link:hover {
+    color: var(--text-main);
+}
+
+.prac-nav-link.active {
+    color: var(--text-main);
+}
+
+.prac-nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent-orange);
+    border-radius: 3px;
+    box-shadow: 0 2px 8px rgba(233, 76, 23, 0.4);
+}
+
+.prac-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.prac-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+/* 2. Layout & Sidebar */
+.prac-layout {
+    display: flex;
+    gap: 40px;
+    width: 95%;
+    max-width: 1400px;
+    margin: 20px auto;
+    flex: 1;
+}
+
+.prac-sidebar {
+    width: 280px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 30px 20px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--border-light);
+    height: fit-content;
+    flex-shrink: 0;
+}
+
+.prac-sidebar-title {
+    margin-bottom: 25px;
+    padding-left: 15px;
+}
+.prac-sidebar-title span {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.prac-sidebar-title h3 {
+    font-size: 1.5rem;
+    color: var(--text-main);
+    margin-top: 5px;
+}
+
+.prac-sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.prac-menu-item {
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 12px 15px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.prac-menu-item:hover {
+    background: rgba(0,0,0,0.03);
+    color: var(--text-main);
+}
+
+.prac-menu-item.active {
+    background: rgba(233, 76, 23, 0.08);
+    color: var(--accent-orange);
+    border: 1px solid rgba(233, 76, 23, 0.2);
+}
+
+/* 3. Main Content Header */
+.prac-main {
+    flex: 1;
+    min-width: 0;
+}
+
+.prac-header {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--border-light);
+    margin-bottom: 30px;
+}
+
+.prac-header-top {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.prac-header-top h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.prac-badge {
+    background: rgba(26, 31, 46, 0.05);
+    color: var(--text-muted);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.prac-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-bottom: 35px;
+    max-width: 900px;
+}
+
+.prac-tabs {
+    display: flex;
+    gap: 40px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.prac-tab {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    padding: 12px 0;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+.prac-tab:hover { color: var(--text-main); }
+.prac-tab.active { color: var(--text-main); }
+.prac-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0;
+    width: 100%; height: 3px;
+    background: var(--accent-orange);
+    border-radius: 3px 3px 0 0;
+}
+
+/* Tab Content Areas */
+.prac-tab-content { display: none; animation: fadeIn 0.4s ease; }
+.prac-tab-content.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.prac-section-header h3 { font-size: 1.5rem; color: var(--text-main); margin-bottom: 10px; }
+.prac-section-header p { color: var(--text-muted); line-height: 1.5; margin-bottom: 30px; max-width: 800px; }
+
+/* 4. Tab 1: Frameworks */
+.framework-list { display: flex; flex-direction: column; gap: 20px; }
+.framework-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--border-light);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.framework-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+}
+.fw-number {
+    background: rgba(233, 76, 23, 0.1);
+    color: var(--accent-orange);
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 8px 12px;
+    border-radius: 10px;
+}
+.fw-details { flex: 1; }
+.fw-details h4 { font-size: 1.2rem; color: var(--text-main); margin-bottom: 10px; }
+.fw-details p { color: var(--text-muted); line-height: 1.5; font-size: 0.95rem; }
+.fw-download-btn {
+    background: #f1f3f7;
+    border: none;
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; justify-content: center; align-items: center;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.fw-download-btn:hover {
+    background: var(--text-main);
+    color: #fff;
+}
+
+/* 5. Tab 2: Best Practices */
+.bp-checklist { display: flex; flex-direction: column; gap: 30px; margin-top: 40px; }
+.bp-item { display: flex; gap: 20px; align-items: flex-start; }
+.bp-icon {
+    width: 28px; height: 28px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+.bp-details h4 { font-size: 1.1rem; color: var(--text-main); margin-bottom: 8px; }
+.bp-details p { color: var(--text-muted); line-height: 1.5; font-size: 0.95rem; max-width: 800px; }
+
+/* 6. Tab 3: AI Infusion */
+.metric-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+.metric-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 30px 20px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--border-light);
+}
+.metric-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 5px;
+}
+.metric-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-orange);
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+.metric-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+/* Light Cinematic Gallery */
+.light-gallery-container {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--border-light);
+}
+.light-main-image {
+    width: 100%;
+    height: 450px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    background: #f1f3f7;
+}
+.light-main-image img { transition: opacity 0.5s ease, transform 0.5s ease; transform: scale(1); }
+.light-main-image.fade-anim img { opacity: 0; transform: scale(0.97); }
+
+.light-overlay {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.3);
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; transition: opacity 0.3s ease;
+}
+.light-main-image:hover .light-overlay { opacity: 1; }
+.watermark-logo {
+    position: absolute; bottom: 20px; right: 20px;
+    font-weight: 700; font-size: 1.2rem; color: rgba(255,255,255,0.8);
+    background: rgba(0,0,0,0.2); padding: 5px 15px; border-radius: 20px; backdrop-filter: blur(5px);
+}
+
+.light-thumbnail-wrapper {
+    display: flex; align-items: center; gap: 15px; margin-top: 20px;
+}
+.light-nav-btn {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: #fff; border: 1px solid var(--border-light);
+    color: var(--text-main); display: flex; justify-content: center; align-items: center;
+    cursor: pointer; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+}
+.light-nav-btn:hover { background: #f8f9fb; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-1px); }
+
+.light-scroll-track {
+    flex: 1; overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none;
+    display: flex; gap: 15px; padding: 5px 0;
+}
+.light-scroll-track::-webkit-scrollbar { display: none; }
+
+.light-thumb {
+    flex: 0 0 160px; height: 110px; border-radius: 12px;
+    overflow: hidden; cursor: pointer; border: 2px solid transparent;
+    transition: all 0.2s ease; position: relative; opacity: 0.6;
+}
+.light-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.light-thumb:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: var(--shadow-soft); }
+.light-thumb.active-thumb {
+    opacity: 1; border-color: var(--accent-orange);
+    box-shadow: 0 0 15px rgba(233, 76, 23, 0.3);
+}
+.thumb-label {
+    position: absolute; bottom: 0; left: 0; width: 100%;
+    background: rgba(0,0,0,0.6); color: #fff; font-size: 0.75rem;
+    padding: 5px 8px; font-weight: 600;
+}
