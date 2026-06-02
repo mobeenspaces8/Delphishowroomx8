@@ -4221,3 +4221,55 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .sidebar-nav li {
     cursor: pointer;
 }
+
+/* --- End-to-End Responsiveness Fixes --- */
+@media (max-width: 600px) {
+    .header-brand-bar {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 15px;
+    }
+    .header-subnav {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 12px;
+    }
+    
+    .tab-nav, .practice-tabs {
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 5px;
+    }
+    
+    .tab, .practice-tab {
+        flex-shrink: 0;
+    }
+    
+    .deep-dive-hero h1, .practice-header h2 {
+        font-size: 1.8rem !important;
+        line-height: 1.2;
+    }
+    
+    .top-action-bar {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .top-action-bar .external-action-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .breakdown-row {
+        flex-direction: column;
+    }
+    .breakdown-left {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .breakdown-right {
+        width: 100%;
+    }
+}

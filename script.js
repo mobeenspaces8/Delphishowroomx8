@@ -1130,3 +1130,15 @@ function selectPractice(element) {
         if (badgeEl) badgeEl.innerText = practiceData[practiceName].members;
     }
 }
+
+// --- Navigation Fixes --- //
+function goToHome() {
+    hideAllScreens();
+    const healthcareUiContainer = document.getElementById('healthcare-ui-container');
+    if (healthcareUiContainer) healthcareUiContainer.classList.add('hidden');
+    
+    const mainContainer = document.getElementById('main-container');
+    if (mainContainer) mainContainer.classList.remove('hidden');
+    
+    document.body.style.overflowY = 'auto';
+}
