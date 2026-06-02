@@ -223,7 +223,7 @@ body {
     100% { background-position: 0% 100%; }
 }
 
-#screen-landing, #screen-clinical, #screen-deep-dive, #screen-frameworks, #screen-data-models, #screen-best-practices {
+#screen-landing, #screen-clinical, #screen-deep-dive, #screen-frameworks, #screen-data-models {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     overflow-y: auto;

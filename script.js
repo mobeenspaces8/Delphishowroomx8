@@ -1038,3 +1038,9 @@ function scrollAiGallery(direction) {
         track.scrollBy({ left: direction * 300, behavior: 'smooth' });
     }
 }
+
+function openPracticesTab(tabId) {
+    openScreen('screen-frameworks');
+    const tabBtn = document.querySelector('.practice-tab[data-target="' + tabId + '"]');
+    if(tabBtn) tabBtn.click();
+}
