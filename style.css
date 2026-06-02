@@ -4279,3 +4279,47 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     background-color: rgba(0, 0, 0, 0.5) !important;
     color: #ffffff;
 }
+
+/* Lightbox Zoom Controls */
+.lightbox-zoom-controls {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px 20px;
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 10001;
+}
+.zoom-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+.zoom-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+}
+.zoom-btn svg {
+    pointer-events: none;
+}
+#lightbox-content {
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    transform-origin: center center;
+    cursor: grab;
+}
+#lightbox-content:active {
+    cursor: grabbing;
+}
