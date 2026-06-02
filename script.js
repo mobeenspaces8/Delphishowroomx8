@@ -566,28 +566,6 @@ function initImageLibraryCarousel() {
     // Basic implementation since it's a grid in the new HTML, but just in case we kept the carousel class
 }
 
-function openLightbox(src, type) {
-    zoomLightbox(0);
-    const modal = document.getElementById('lightbox-modal');
-    const content = document.getElementById('lightbox-content');
-    if (!modal || !content) return;
-    
-    content.innerHTML = '';
-    if (type === 'video') {
-        const video = document.createElement('video');
-        video.src = src;
-        video.controls = true;
-        video.autoplay = true;
-        content.appendChild(video);
-    } else {
-        const img = document.createElement('img');
-        img.src = src;
-        content.appendChild(img);
-    }
-    
-    modal.classList.remove('hidden');
-}
-
 function closeLightbox() {
     const modal = document.getElementById('lightbox-modal');
     const content = document.getElementById('lightbox-content');
@@ -595,22 +573,7 @@ function closeLightbox() {
     if (content) content.innerHTML = '';
 }
 
-function updateFeaturedImage(element, src, type) {
-    // Update active state
-    document.querySelectorAll('.library-thumbnail').forEach(t => t.classList.remove('active-thumb'));
-    if(element) element.classList.add('active-thumb');
-    
-    // Update main image display
-    const featuredContainer = document.getElementById('featured-image-container');
-    if(!featuredContainer) return;
-    
-    // Apply fade out animation
-    featuredContainer.classList.add('fade-anim');
-    
-    setTimeout(() => {
-        if (type === 'video') {
-            featuredContainer.innerHTML = `
-                <video id="featured-image" src="${src}" autoplay muted loop style="width:100%; height:100%; object-fit:cover; border-radius:12px;"></video>
+" autoplay muted loop style="width:100%; height:100%; object-fit:cover; border-radius:12px;"></video>
                 <div class="hover-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></div>
             `;
             featuredContainer.onclick = () => openLightbox(src, 'video');
@@ -629,13 +592,6 @@ function updateFeaturedImage(element, src, type) {
     }, 300); // 300ms matches a quick fade out duration
 }
 
-function scrollGallery(direction) {
-    const track = document.getElementById('thumbnail-scroll-track');
-    if(track) {
-        // Scroll by 2 thumbnail widths approx (140px + gap) * 2 = 300px
-        track.scrollBy({ left: direction * 300, behavior: 'smooth' });
-    }
-}
 
 // Lightbox Escape Key Listener
 document.addEventListener('keydown', (e) => {
@@ -1031,12 +987,6 @@ function updateAiFeaturedImage(element, src, type) {
     }, 300);
 }
 
-function scrollAiGallery(direction) {
-    const track = document.getElementById('ai-thumbnail-scroll-track');
-    if(track) {
-        track.scrollBy({ left: direction * 300, behavior: 'smooth' });
-    }
-}
 
 function openPracticesTab(tabId) {
     openScreen('screen-frameworks');
@@ -1232,5 +1182,237 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('mouseup', () => {
             isPanning = false;
         });
+    }
+});
+
+// --- Premium Lightbox Gallery Carousel --- //
+let globalGalleryItems = [];
+let currentLightboxIndex = -1;
+
+class LightboxGallery {
+    constructor(containerId, mediaItems) {
+        this.container = document.getElementById(containerId);
+        if (!this.container) return;
+        this.mediaItems = mediaItems;
+        this.currentIndex = 0;
+        this.render();
+    }
+
+    render() {
+        this.container.innerHTML = '';
+        this.container.className = 'lightbox-gallery-container';
+
+        // 1. Carousel View
+        const carouselView = document.createElement('div');
+        carouselView.className = 'gallery-carousel-view';
+
+        // Prev Arrow
+        const btnLeft = document.createElement('button');
+        btnLeft.className = 'gallery-arrow gallery-arrow-left';
+        btnLeft.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>';
+        btnLeft.onclick = (e) => { e.stopPropagation(); this.navigate(-1); };
+        
+        // Track
+        this.track = document.createElement('div');
+        this.track.className = 'gallery-track';
+
+        // Next Arrow
+        const btnRight = document.createElement('button');
+        btnRight.className = 'gallery-arrow gallery-arrow-right';
+        btnRight.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>';
+        btnRight.onclick = (e) => { e.stopPropagation(); this.navigate(1); };
+
+        carouselView.appendChild(btnLeft);
+        carouselView.appendChild(this.track);
+        carouselView.appendChild(btnRight);
+        this.container.appendChild(carouselView);
+
+        // 2. Thumbnail Strip
+        this.thumbStrip = document.createElement('div');
+        this.thumbStrip.className = 'gallery-thumbnail-strip';
+        this.container.appendChild(this.thumbStrip);
+
+        this.updateDOM();
+    }
+
+    navigate(dir) {
+        this.currentIndex += dir;
+        if (this.currentIndex < 0) this.currentIndex = this.mediaItems.length - 1;
+        if (this.currentIndex >= this.mediaItems.length) this.currentIndex = 0;
+        this.updateDOM();
+    }
+
+    goToIndex(idx) {
+        this.currentIndex = idx;
+        this.updateDOM();
+    }
+
+    updateDOM() {
+        // Render Track
+        this.track.innerHTML = '';
+        const total = this.mediaItems.length;
+        
+        // Determine prev and next indices (looping)
+        const prevIndex = (this.currentIndex - 1 + total) % total;
+        const nextIndex = (this.currentIndex + 1) % total;
+
+        const renderSlide = (idx, posClass) => {
+            const item = this.mediaItems[idx];
+            const slide = document.createElement('div');
+            slide.className = 'gallery-slide ' + posClass;
+
+            if (item.type === 'video') {
+                const video = document.createElement('video');
+                video.src = item.src;
+                video.muted = true;
+                video.loop = true;
+                if(posClass === 'active') video.play();
+                slide.appendChild(video);
+            } else {
+                const img = document.createElement('img');
+                img.src = item.src;
+                slide.appendChild(img);
+            }
+
+            if (posClass === 'active') {
+                const expand = document.createElement('div');
+                expand.className = 'slide-expand-overlay';
+                expand.innerHTML = '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>';
+                slide.appendChild(expand);
+                
+                // Open global lightbox with ALL items from this gallery
+                slide.onclick = () => {
+                    globalGalleryItems = this.mediaItems;
+                    currentLightboxIndex = this.currentIndex;
+                    openLightbox(item.src, item.type, true);
+                };
+            } else {
+                slide.onclick = () => this.goToIndex(idx);
+            }
+
+            this.track.appendChild(slide);
+        };
+
+        if (total > 1) renderSlide(prevIndex, 'prev');
+        renderSlide(this.currentIndex, 'active');
+        if (total > 2) renderSlide(nextIndex, 'next');
+        else if (total === 2 && prevIndex !== nextIndex) renderSlide(nextIndex, 'next'); // Edge case 2 items
+
+        // Render Thumbnails
+        this.thumbStrip.innerHTML = '';
+        this.mediaItems.forEach((item, idx) => {
+            const thumb = document.createElement('div');
+            thumb.className = 'gallery-thumb' + (idx === this.currentIndex ? ' active' : '');
+            
+            if (item.type === 'video') {
+                // For video thumb, we can use a poster image if provided, else just load the video element
+                const video = document.createElement('video');
+                video.src = item.src;
+                video.muted = true;
+                thumb.appendChild(video);
+                
+                const icon = document.createElement('div');
+                icon.className = 'thumb-video-indicator';
+                icon.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>';
+                thumb.appendChild(icon);
+            } else {
+                const img = document.createElement('img');
+                img.src = item.src;
+                thumb.appendChild(img);
+            }
+            
+            thumb.onclick = () => this.goToIndex(idx);
+            this.thumbStrip.appendChild(thumb);
+        });
+    }
+}
+
+// --- Enhanced Global Lightbox Navigation --- //
+function navigateLightbox(dir) {
+    if (globalGalleryItems.length === 0) return;
+    
+    currentLightboxIndex += dir;
+    if (currentLightboxIndex < 0) currentLightboxIndex = globalGalleryItems.length - 1;
+    if (currentLightboxIndex >= globalGalleryItems.length) currentLightboxIndex = 0;
+    
+    const item = globalGalleryItems[currentLightboxIndex];
+    openLightbox(item.src, item.type, false);
+}
+
+// Override openLightbox
+function openLightbox(src, type, isFromGallery = false) {
+    const modal = document.getElementById('lightbox-modal');
+    const content = document.getElementById('lightbox-content');
+    if (!modal || !content) return;
+    
+    if(!isFromGallery) {
+        globalGalleryItems = [];
+        currentLightboxIndex = -1;
+    }
+    
+    // Toggle navigation arrows visibility
+    const leftArrow = document.getElementById('lightbox-nav-left');
+    const rightArrow = document.getElementById('lightbox-nav-right');
+    const counter = document.getElementById('lightbox-counter');
+    
+    if (globalGalleryItems.length > 1) {
+        if(leftArrow) leftArrow.classList.remove('hidden');
+        if(rightArrow) rightArrow.classList.remove('hidden');
+        if(counter) {
+            counter.classList.remove('hidden');
+            counter.innerText = (currentLightboxIndex + 1) + " / " + globalGalleryItems.length;
+        }
+    } else {
+        if(leftArrow) leftArrow.classList.add('hidden');
+        if(rightArrow) rightArrow.classList.add('hidden');
+        if(counter) counter.classList.add('hidden');
+    }
+    
+    content.innerHTML = '';
+    if (type === 'video') {
+        const video = document.createElement('video');
+        video.src = src;
+        video.controls = true;
+        video.autoplay = true;
+        video.style.maxWidth = '90vw';
+        video.style.maxHeight = '90vh';
+        content.appendChild(video);
+    } else {
+        const img = document.createElement('img');
+        img.src = src;
+        content.appendChild(img);
+    }
+    
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    zoomLightbox(0);
+}
+
+// --- Initialize Galleries --- //
+document.addEventListener('DOMContentLoaded', () => {
+    const aiPracticeMedia = [
+        { type: 'image', src: 'Media/Card Images/Card Image 1.jpg' },
+        { type: 'image', src: 'Media/Card Images/Card Image 2.jpg' },
+        { type: 'image', src: 'Media/Card Images/Card Image 3.jpg' },
+        { type: 'video', src: 'https://www.w3schools.com/html/mov_bbb.mp4' }
+    ];
+
+    const patientIntakeMedia = [
+        { type: 'image', src: 'Media/Healthcare Services/3. Shawroom- Overview.jpg' },
+        { type: 'image', src: 'Media/Card Images/Card Image 2.jpg' },
+        { type: 'image', src: 'Media/Card Images/Card Image 3.jpg' },
+        { type: 'video', src: 'https://www.w3schools.com/html/mov_bbb.mp4' }
+    ];
+
+    if(document.getElementById('ai-practice-gallery')) {
+        new LightboxGallery('ai-practice-gallery', aiPracticeMedia);
+    }
+    
+    if(document.getElementById('hc-ai-practice-gallery')) {
+        new LightboxGallery('hc-ai-practice-gallery', aiPracticeMedia);
+    }
+
+    if(document.getElementById('patient-intake-gallery')) {
+        new LightboxGallery('patient-intake-gallery', patientIntakeMedia);
     }
 });

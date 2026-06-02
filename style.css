@@ -4323,3 +4323,202 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 #lightbox-content:active {
     cursor: grabbing;
 }
+
+/* --- Premium Lightbox Gallery Carousel --- */
+.lightbox-gallery-container {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+}
+
+/* Main Viewer */
+.gallery-carousel-view {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    min-height: 400px;
+    overflow: hidden;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.gallery-track {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.gallery-slide {
+    position: absolute;
+    width: 70%;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease, filter 0.5s ease;
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.gallery-slide img, .gallery-slide video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Active Center Item */
+.gallery-slide.active {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    z-index: 10;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/* Previous/Next Peeks */
+.gallery-slide.prev {
+    opacity: 0.5;
+    transform: translateX(-60%) scale(0.85);
+    z-index: 5;
+    filter: brightness(0.5);
+}
+
+.gallery-slide.next {
+    opacity: 0.5;
+    transform: translateX(60%) scale(0.85);
+    z-index: 5;
+    filter: brightness(0.5);
+}
+
+/* Hover Expand Icon on Active Slide */
+.slide-expand-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.gallery-slide.active:hover .slide-expand-overlay {
+    opacity: 1;
+}
+
+/* Side Navigation Arrows */
+.gallery-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.3s ease;
+}
+.gallery-arrow:hover {
+    background: rgba(255,255,255,0.25);
+    transform: translateY(-50%) scale(1.1);
+}
+.gallery-arrow-left { left: 20px; }
+.gallery-arrow-right { right: 20px; }
+
+/* Thumbnail Strip */
+.gallery-thumbnail-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    overflow-x: auto;
+    padding: 10px 0;
+    scrollbar-width: none;
+}
+.gallery-thumbnail-strip::-webkit-scrollbar { display: none; }
+
+.gallery-thumb {
+    width: 100px;
+    height: 70px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    flex-shrink: 0;
+    position: relative;
+}
+.gallery-thumb img, .gallery-thumb video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Video Indicator in Thumb */
+.thumb-video-indicator {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    background: rgba(0,0,0,0.6);
+    border-radius: 50%;
+    padding: 2px;
+    display: flex;
+}
+
+/* Active/Hover Thumb */
+.gallery-thumb:hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+}
+.gallery-thumb.active {
+    opacity: 1;
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 15px rgba(233, 76, 23, 0.4);
+    transform: scale(1.05);
+}
+
+/* Global Lightbox Arrows */
+.lightbox-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10005;
+    transition: all 0.3s ease;
+}
+.lightbox-arrow:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-50%) scale(1.1);
+}
+.lightbox-arrow-left { left: 40px; }
+.lightbox-arrow-right { right: 40px; }
