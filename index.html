@@ -202,13 +202,91 @@
 
         <!-- Placeholder Screens -->
         <section id="screen-data-models" class="hidden">
-            <div class="placeholder-content">
-                <h2>Data Models</h2>
-                <p>Coming Soon. This section is currently under development.</p>
+            <header class="universal-header">
+                <div class="header-brand-bar">
+                    <div class="logo" onclick="goToHome()">
+                        <img src="Media/Delphi x AI.png" alt="Delphi x AI">
+                    </div>
+                    <div class="header-actions">
+                        <button class="icon-btn" title="Notifications">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                        </button>
+                        <div class="user-profile-container">
+                            <button class="icon-btn user-profile-btn" title="User Menu">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-subnav">
+                    <button class="back-nav-btn" onclick="goBackOneScreen()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                        <span>Back to Healthcare</span>
+                    </button>
+                    <nav class="breadcrumbs">
+                        <span class="bc-crumb bc-link" onclick="goToHome()">Home</span>
+                        <span class="bc-sep">›</span>
+                        <span class="bc-crumb bc-link" onclick="goToHome()">Industries</span>
+                        <span class="bc-sep">›</span>
+                        <span class="bc-crumb bc-link" onclick="openScreen('screen-landing')">Healthcare</span>
+                        <span class="bc-sep">›</span>
+                        <span class="bc-crumb bc-current">Data Models</span>
+                    </nav>
+                </div>
+            </header>
+            
+            <div class="hc-hero landing-hero no-right-col" style="min-height: auto; padding-top: 40px; padding-bottom: 40px;">
+                <div class="hero-left-col full-width align-left">
+                    <h1>Data Models</h1>
+                    <p>Coming Soon. This section is currently under development.</p>
+                </div>
+            </div>
+            
+            <div class="placeholder-content" style="margin-top: 50px;">
                 <button class="action-btn" onclick="goBackOneScreen()">Go Back</button>
             </div>
         </section>
         <section id="screen-frameworks" class="hidden screen-practices">
+            <header class="universal-header">
+                <div class="header-brand-bar">
+                    <div class="logo" onclick="goToHome()">
+                        <img src="Media/Delphi x AI.png" alt="Delphi x AI">
+                    </div>
+                    <div class="header-actions">
+                        <button class="icon-btn" title="Notifications">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                        </button>
+                        <div class="user-profile-container">
+                            <button class="icon-btn user-profile-btn" title="User Menu">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-subnav">
+                    <button class="back-nav-btn" onclick="goBackOneScreen()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                        <span>Back to Healthcare</span>
+                    </button>
+                    <nav class="breadcrumbs">
+                        <span class="bc-crumb bc-link" onclick="goToHome()">Home</span>
+                        <span class="bc-sep">›</span>
+                        <span class="bc-crumb bc-link" onclick="goToHome()">Industries</span>
+                        <span class="bc-sep">›</span>
+                        <span class="bc-crumb bc-link" onclick="openScreen('screen-landing')">Healthcare</span>
+                        <span class="bc-sep">›</span>
+                        <span class="bc-crumb bc-current">Practices</span>
+                    </nav>
+                </div>
+            </header>
+            
+            <div class="hc-hero landing-hero no-right-col" style="min-height: auto; padding-top: 40px; padding-bottom: 40px; border-bottom: none;">
+                <div class="hero-left-col full-width align-left">
+                    <h1>Our Practices</h1>
+                    <p>Operating principles and enterprise design system kits refined through repeated client engagements.</p>
+                </div>
+            </div>
+
             <div class="practices-layout">
                 
                 <!-- Left Sidebar -->
@@ -426,9 +504,47 @@
             </div>
         </section>
         <section id="screen-best-practices" class="hidden">
-            <div class="placeholder-content">
-                <h2>Best Practices</h2>
-                <p>Coming Soon. This section is currently under development.</p>
+            <header class="universal-header">
+                <div class="header-brand-bar">
+                    <div class="logo" onclick="goToHome()">
+                        <img src="Media/Delphi x AI.png" alt="Delphi x AI">
+                    </div>
+                    <div class="header-actions">
+                        <button class="icon-btn" title="Notifications">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                        </button>
+                        <div class="user-profile-container">
+                            <button class="icon-btn user-profile-btn" title="User Menu">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-subnav">
+                    <button class="back-nav-btn" onclick="goBackOneScreen()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                        <span>Back to Healthcare</span>
+                    </button>
+                    <nav class="breadcrumbs">
+                        <span class="bc-crumb bc-link" onclick="goToHome()">Home</span>
+                        <span class="bc-sep">›</span>
+                        <span class="bc-crumb bc-link" onclick="goToHome()">Industries</span>
+                        <span class="bc-sep">›</span>
+                        <span class="bc-crumb bc-link" onclick="openScreen('screen-landing')">Healthcare</span>
+                        <span class="bc-sep">›</span>
+                        <span class="bc-crumb bc-current">Best Practices</span>
+                    </nav>
+                </div>
+            </header>
+            
+            <div class="hc-hero landing-hero no-right-col" style="min-height: auto; padding-top: 40px; padding-bottom: 40px;">
+                <div class="hero-left-col full-width align-left">
+                    <h1>Best Practices</h1>
+                    <p>Coming Soon. This section is currently under development.</p>
+                </div>
+            </div>
+            
+            <div class="placeholder-content" style="margin-top: 50px;">
                 <button class="action-btn" onclick="goBackOneScreen()">Go Back</button>
             </div>
         </section>
