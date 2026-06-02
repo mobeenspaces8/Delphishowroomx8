@@ -2948,7 +2948,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 /* Grid Override - 5 Columns */
 .cap-grid {
-    grid-template-columns: repeat(5, 1fr) !important;
+    grid-template-columns: repeat(4, 1fr) !important;
 }
 @media (max-width: 1400px) {
     .cap-grid { grid-template-columns: repeat(4, 1fr) !important; }
@@ -4272,4 +4272,10 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     .breakdown-right {
         width: 100%;
     }
+}
+
+/* --- UI Refinements --- */
+.filter-select option {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    color: #ffffff;
 }

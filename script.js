@@ -1,4 +1,4 @@
-﻿// Configure GSAP Plugins
+// Configure GSAP Plugins
 gsap.registerPlugin(ScrollTrigger);
 
 // --- Configuration & Assets --- //
@@ -454,12 +454,12 @@ function renderUseCases() {
                 </div>
             </div>
             <div class="card-content">
+                <h3>${uc.title}</h3>
+                <p>${uc.desc}</p>
                 <div class="card-tags">
                     <span class="tag-pill domain">${uc.domain.toUpperCase()}</span>
                     <span class="tag-pill tech">${uc.tech.replace('-', ' ').toUpperCase()}</span>
                 </div>
-                <h3>${uc.title}</h3>
-                <p>${uc.desc}</p>
                 
                 <div class="card-footer-impact">
                     <div class="impact-stats">
