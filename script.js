@@ -571,12 +571,8 @@ function closeLightbox() {
     const content = document.getElementById('lightbox-content');
     if (modal) modal.classList.add('hidden');
     if (content) content.innerHTML = '';
-    document.body.style.overflow = '';
-    // Stop any playing videos
-    const vids = content ? content.querySelectorAll('video') : [];
-    vids.forEach(v => v.pause());
-    currentZoom = 1; translateX = 0; translateY = 0;
 }
+
 
 
 
@@ -928,51 +924,7 @@ document.querySelectorAll('.practice-tab').forEach(tab => {
 });
 
 // AI Practice Gallery Logic
-function updateAiFeaturedImage(element, src, type) {
-    const track = document.getElementById('ai-thumbnail-scroll-track');
-    if(!track) return;
-    
-    // Update active state
-    track.querySelectorAll('.library-thumbnail').forEach(t => t.classList.remove('active-thumb'));
-    if(element) element.classList.add('active-thumb');
-    
-    // Update main image display
-    const featuredContainer = document.getElementById('ai-featured-image-container');
-    if(!featuredContainer) return;
-    
-    // Apply fade out animation
-    featuredContainer.classList.add('fade-anim');
-    
-    // Hide overlay text if clicking anything other than the first process slide
-    const overlay = document.getElementById('ai-slide-overlay');
-    if(overlay) {
-        // A simple check: if it's the first thumbnail, show overlay, else hide
-        const isFirst = element.querySelector('.thumb-label') && element.querySelector('.thumb-label').innerText.includes('01');
-        overlay.style.display = isFirst ? 'flex' : 'none';
-    }
-    
-    setTimeout(() => {
-        if (type === 'video') {
-            featuredContainer.innerHTML = `
-                <video id="ai-featured-image" src="${src}" autoplay muted loop style="width:100%; height:100%; object-fit:cover; border-radius:12px;"></video>
-                <div class="hover-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></div>
-            `;
-            if(overlay) featuredContainer.appendChild(overlay);
-            featuredContainer.onclick = () => openLightbox(src, 'video');
-        } else {
-            featuredContainer.innerHTML = `
-                <img id="ai-featured-image" src="${src}" alt="Featured Image" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
-                <div class="hover-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
-            `;
-            if(overlay) featuredContainer.appendChild(overlay);
-            featuredContainer.onclick = () => openLightbox(src, 'image');
-        }
-        
-        setTimeout(() => {
-            featuredContainer.classList.remove('fade-anim');
-        }, 50);
-    }, 300);
-}
+
 
 
 function openPracticesTab(tabId) {
@@ -1402,16 +1354,4 @@ document.addEventListener('DOMContentLoaded', () => {
     if(document.getElementById('patient-intake-gallery')) {
         new LightboxGallery('patient-intake-gallery', patientIntakeMedia);
     }
-});
-
-// --- Lightbox Keyboard Navigation --- //
-document.addEventListener('keydown', (e) => {
-    const modal = document.getElementById('lightbox-modal');
-    if (!modal || modal.classList.contains('hidden')) return;
-    if (e.key === 'ArrowRight') navigateLightbox(1);
-    if (e.key === 'ArrowLeft')  navigateLightbox(-1);
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === '+' || e.key === '=') zoomLightbox(1);
-    if (e.key === '-') zoomLightbox(-1);
-    if (e.key === '0') zoomLightbox(0);
 });
