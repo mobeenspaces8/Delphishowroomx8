@@ -1,4 +1,4 @@
-﻿// Configure GSAP Plugins
+// Configure GSAP Plugins
 gsap.registerPlugin(ScrollTrigger);
 
 // --- Configuration & Assets --- //
@@ -1207,7 +1207,7 @@ function zoomLightbox(direction) {
 function updateLightboxTransform() {
     const content = document.getElementById('lightbox-content');
     if (content) {
-        content.style.transform = 	ranslate( + translateX + px,  + translateY + px) scale( + currentZoom + );
+        content.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
     }
 }
 
