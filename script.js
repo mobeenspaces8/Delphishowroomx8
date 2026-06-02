@@ -381,10 +381,8 @@ function goBackOneScreen() {
     } else {
         const p1 = document.getElementById('screen-data-models');
         const p2 = document.getElementById('screen-frameworks');
-        const p3 = document.getElementById('screen-best-practices');
         if ((p1 && !p1.classList.contains('hidden')) || 
-            (p2 && !p2.classList.contains('hidden')) || 
-            (p3 && !p3.classList.contains('hidden'))) {
+            (p2 && !p2.classList.contains('hidden'))) {
             hideAllScreens();
             if (screenLanding) screenLanding.classList.remove('hidden');
         } else {
@@ -1044,3 +1042,13 @@ function openPracticesTab(tabId) {
     const tabBtn = document.querySelector('.practice-tab[data-target="' + tabId + '"]');
     if(tabBtn) tabBtn.click();
 }
+
+// Global Event Listeners
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const modal = document.getElementById('lightbox-modal');
+        if (modal && !modal.classList.contains('hidden')) {
+            closeLightbox();
+        }
+    }
+});
