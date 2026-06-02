@@ -1,4 +1,4 @@
-// Configure GSAP Plugins
+﻿// Configure GSAP Plugins
 gsap.registerPlugin(ScrollTrigger);
 
 // --- Configuration & Assets --- //
@@ -346,7 +346,7 @@ function hideAllScreens() {
     if (screenLanding) screenLanding.classList.add('hidden');
     if (screenClinical) screenClinical.classList.add('hidden');
     if (screenDeepDive) screenDeepDive.classList.add('hidden');
-    const placeholders = ['screen-data-models', 'screen-frameworks', 'screen-best-practices'];
+    const placeholders = ['screen-data-models', 'screen-frameworks', 'screen-best-practices', 'screen-healthcare-frameworks'];
     placeholders.forEach(id => {
         const el = document.getElementById(id);
         if (el) el.classList.add('hidden');
@@ -1074,7 +1074,7 @@ function filterPractices() {
 
 const practiceData = {
     "Experience Design": {
-        desc: "We design enterprise-grade product experiences that translate complex domain workflows into intuitive interfaces — combining research, systems thinking, and AI-native interaction patterns to accelerate adoption across our clients' organizations.",
+        desc: "We design enterprise-grade product experiences that translate complex domain workflows into intuitive interfaces â€” combining research, systems thinking, and AI-native interaction patterns to accelerate adoption across our clients' organizations.",
         members: "12 Members"
     },
     "Product Owner & Business Analysis": {
@@ -1152,3 +1152,30 @@ function showBestPracticesDetails() {
     
     openPracticesTab('practice-tab-best-practices');
 }
+
+// --- Healthcare Frameworks Navigation --- //
+function openHcPracticesTab(tabId) {
+    openScreen('screen-healthcare-frameworks');
+    const tabBtn = document.querySelector('#screen-healthcare-frameworks .practice-tab[data-target="' + tabId + '"]');
+    if(tabBtn) tabBtn.click();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Tab Switching for Healthcare Frameworks
+    const hcTabs = document.querySelectorAll('#screen-healthcare-frameworks .practice-tab');
+    hcTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            hcTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            const targetId = tab.getAttribute('data-target');
+            const allPanes = document.querySelectorAll('#screen-healthcare-frameworks .practice-pane');
+            allPanes.forEach(pane => {
+                pane.classList.remove('active');
+                if(pane.id === targetId) {
+                    pane.classList.add('active');
+                }
+            });
+        });
+    });
+});
