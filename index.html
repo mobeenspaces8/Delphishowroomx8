@@ -351,13 +351,19 @@
                         <!-- Image Library Section -->
                         <div class="overview-sec sec-image-library">
                             <h3 class="sec-heading align-left">View Image Library</h3>
-                            <div class="image-library-grid">
-                                <div class="library-item" onclick="openLightbox('Media/Card Images/Card Image 1.jpg', 'image')"><img src="Media/Card Images/Card Image 1.jpg" alt="Patient intake UI"><div class="hover-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-                                <div class="library-item" onclick="openLightbox('Media/Card Images/Card Image 2.jpg', 'image')"><img src="Media/Card Images/Card Image 2.jpg" alt="AI workflow"><div class="hover-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-                                <div class="library-item" onclick="openLightbox('Media/Card Images/Card Image 3.jpg', 'image')"><img src="Media/Card Images/Card Image 3.jpg" alt="Dashboard view"><div class="hover-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-                                <div class="library-item" onclick="openLightbox('https://www.w3schools.com/html/mov_bbb.mp4', 'video')"><img src="Media/Card Images/Card Image 4.jpg" alt="Mobile patient form"><div class="hover-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></div></div>
-                                <div class="library-item" onclick="openLightbox('Media/Card Images/Card Image 5.jpg', 'image')"><img src="Media/Card Images/Card Image 5.jpg" alt="Hospital staff interface"><div class="hover-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-                                <div class="library-item" onclick="openLightbox('Media/Card Images/Card Image 1.jpg', 'image')"><img src="Media/Card Images/Card Image 1.jpg" alt="Automation process"><div class="hover-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+                            <div class="interactive-image-library">
+                                <div class="main-featured-image" id="featured-image-container" onclick="openLightbox('Media/Card Images/Card Image 1.jpg', 'image')">
+                                    <img id="featured-image" src="Media/Card Images/Card Image 1.jpg" alt="Featured Image" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+                                    <div class="hover-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+                                </div>
+                                <div class="thumbnail-scroll-track">
+                                    <div class="library-thumbnail active-thumb" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 1.jpg', 'image')"><img src="Media/Card Images/Card Image 1.jpg" alt="Patient intake UI"></div>
+                                    <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 2.jpg', 'image')"><img src="Media/Card Images/Card Image 2.jpg" alt="AI workflow"></div>
+                                    <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 3.jpg', 'image')"><img src="Media/Card Images/Card Image 3.jpg" alt="Dashboard view"></div>
+                                    <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'https://www.w3schools.com/html/mov_bbb.mp4', 'video')"><img src="Media/Card Images/Card Image 4.jpg" alt="Mobile patient form"></div>
+                                    <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 5.jpg', 'image')"><img src="Media/Card Images/Card Image 5.jpg" alt="Hospital staff interface"></div>
+                                    <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 1.jpg', 'image')"><img src="Media/Card Images/Card Image 1.jpg" alt="Automation process"></div>
+                                </div>
                             </div>
                         </div>
 
