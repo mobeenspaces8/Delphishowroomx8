@@ -1142,3 +1142,13 @@ function goToHome() {
     
     document.body.style.overflowY = 'auto';
 }
+
+function showBestPracticesDetails() {
+    const healthcareUiContainer = document.getElementById('healthcare-ui-container');
+    if (healthcareUiContainer) healthcareUiContainer.classList.remove('hidden');
+    const mainContainer = document.getElementById('main-container');
+    if (mainContainer) mainContainer.classList.add('hidden');
+    document.body.style.overflowY = 'hidden'; 
+    
+    openPracticesTab('practice-tab-best-practices');
+}
