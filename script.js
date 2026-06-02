@@ -346,6 +346,11 @@ function hideAllScreens() {
     if (screenLanding) screenLanding.classList.add('hidden');
     if (screenClinical) screenClinical.classList.add('hidden');
     if (screenDeepDive) screenDeepDive.classList.add('hidden');
+    const placeholders = ['screen-data-models', 'screen-frameworks', 'screen-best-practices'];
+    placeholders.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('hidden');
+    });
 }
 
 const useCaseData = [
@@ -367,23 +372,31 @@ const useCaseData = [
 ];
 
 let currentPage = 1;
-const itemsPerPage = 6;
+const itemsPerPage = 8;
 
 function goBackOneScreen() {
     if (screenDeepDive && !screenDeepDive.classList.contains('hidden')) {
         hideAllScreens();
         if (screenLanding) screenLanding.classList.remove('hidden');
     } else {
-        goToHome();
+        const p1 = document.getElementById('screen-data-models');
+        const p2 = document.getElementById('screen-frameworks');
+        const p3 = document.getElementById('screen-best-practices');
+        if ((p1 && !p1.classList.contains('hidden')) || 
+            (p2 && !p2.classList.contains('hidden')) || 
+            (p3 && !p3.classList.contains('hidden'))) {
+            hideAllScreens();
+            if (screenLanding) screenLanding.classList.remove('hidden');
+        } else {
+            goToHome();
+        }
     }
 }
 
-function showPlaceholder(title) {
+function openScreen(screenId) {
     hideAllScreens();
-    const placeholder = document.getElementById('screen-placeholder');
-    const pTitle = document.getElementById('placeholder-title');
-    if(pTitle) pTitle.innerText = title + " (Coming Soon)";
-    if(placeholder) placeholder.classList.remove('hidden');
+    const screen = document.getElementById(screenId);
+    if(screen) screen.classList.remove('hidden');
 }
 
 function showHealthcareDetails() {
@@ -554,6 +567,35 @@ let libraryIndex = 0;
 function initImageLibraryCarousel() {
     // Basic implementation since it's a grid in the new HTML, but just in case we kept the carousel class
 }
+
+function openLightbox(src, type) {
+    const modal = document.getElementById('lightbox-modal');
+    const content = document.getElementById('lightbox-content');
+    if (!modal || !content) return;
+    
+    content.innerHTML = '';
+    if (type === 'video') {
+        const video = document.createElement('video');
+        video.src = src;
+        video.controls = true;
+        video.autoplay = true;
+        content.appendChild(video);
+    } else {
+        const img = document.createElement('img');
+        img.src = src;
+        content.appendChild(img);
+    }
+    
+    modal.classList.remove('hidden');
+}
+
+function closeLightbox() {
+    const modal = document.getElementById('lightbox-modal');
+    const content = document.getElementById('lightbox-content');
+    if (modal) modal.classList.add('hidden');
+    if (content) content.innerHTML = '';
+}
+
 // Deep Dive Tabs Logic
 document.querySelectorAll('.dd-tab').forEach(tab => {
     tab.addEventListener('click', () => {
