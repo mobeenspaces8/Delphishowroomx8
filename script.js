@@ -372,7 +372,7 @@ const useCaseData = [
 ];
 
 let currentPage = 1;
-const itemsPerPage = 8;
+const itemsPerPage = 10;
 
 function goBackOneScreen() {
     if (screenDeepDive && !screenDeepDive.classList.contains('hidden')) {

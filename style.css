@@ -2940,3 +2940,67 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .external-action-btn.btn-secondary:hover {
     background: rgba(255, 255, 255, 0.08) !important;
 }
+
+
+/* ==============================================
+   REFINEMENTS - 4TH ITERATION (Card-like Button Hover & 5 Columns)
+   ============================================== */
+
+/* Grid Override - 5 Columns */
+.cap-grid {
+    grid-template-columns: repeat(5, 1fr) !important;
+}
+@media (max-width: 1400px) {
+    .cap-grid { grid-template-columns: repeat(4, 1fr) !important; }
+}
+
+/* Reset buttons from previous premium glow */
+.quick-link-btn, .external-action-btn {
+    border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Add the card hover effect (rotating outline beam) */
+.quick-link-btn::after, .external-action-btn::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    border-radius: inherit !important;
+    padding: 1px !important;
+    background: conic-gradient(from var(--beam-angle, 0deg), transparent 60%, #e94c17 80%, transparent 100%) !important;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0) !important;
+    -webkit-mask-composite: xor !important;
+    mask-composite: exclude !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+    pointer-events: none !important;
+}
+
+.quick-link-btn:hover::after, .external-action-btn:hover::after {
+    opacity: 1 !important;
+    animation: rotateBeam 1.5s linear infinite !important;
+}
+
+/* Add the blur aura behind it like the card has */
+.quick-link-btn::before, .external-action-btn::before {
+    content: "" !important;
+    display: block !important;
+    position: absolute !important;
+    inset: -2px !important;
+    border-radius: inherit !important;
+    background: conic-gradient(from var(--beam-angle, 0deg), transparent 60%, #e94c17 80%, transparent 100%) !important;
+    filter: blur(8px) !important;
+    opacity: 0 !important;
+    z-index: -1 !important;
+    transition: opacity 0.3s ease !important;
+    animation: none !important; /* override temp4 animation */
+}
+
+.quick-link-btn:hover::before, .external-action-btn:hover::before {
+    opacity: 0.8 !important;
+    animation: rotateBeam 1.5s linear infinite !important;
+}
+
+.quick-link-btn:hover, .external-action-btn:hover {
+    transform: translateY(-2px) !important;
+    background: rgba(255, 255, 255, 0.05) !important; /* keep it subtle */
+}
