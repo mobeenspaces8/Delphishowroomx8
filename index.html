@@ -286,15 +286,19 @@
                 <!-- Left Sidebar -->
                 <aside class="practices-sidebar">
                     <h3 class="sidebar-title">OUR DISCIPLINES<br><span>Practices</span></h3>
-                    <ul class="sidebar-nav">
-                        <li class="active">Experience Design</li>
-                        <li>Product Owner & Business Analysis</li>
-                        <li>Data Functional</li>
-                        <li>Data Engineering</li>
-                        <li>AI / ML Engineering</li>
-                        <li>Solution Architecture</li>
-                        <li>Quality Engineering</li>
-                        <li>Project Management</li>
+                    <div class="sidebar-search-container">
+                        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        <input type="text" id="practices-search" class="practices-search-input" placeholder="Search disciplines..." onkeyup="filterPractices()">
+                    </div>
+                    <ul class="sidebar-nav" id="practices-list">
+                        <li class="active" onclick="selectPractice(this)">Experience Design</li>
+                        <li onclick="selectPractice(this)">Product Owner & Business Analysis</li>
+                        <li onclick="selectPractice(this)">Data Functional</li>
+                        <li onclick="selectPractice(this)">Data Engineering</li>
+                        <li onclick="selectPractice(this)">AI / ML Engineering</li>
+                        <li onclick="selectPractice(this)">Solution Architecture</li>
+                        <li onclick="selectPractice(this)">Quality Engineering</li>
+                        <li onclick="selectPractice(this)">Project Management</li>
                     </ul>
                 </aside>
 
@@ -304,10 +308,10 @@
                     <!-- Practice Header -->
                     <div class="practice-header">
                         <div class="header-title-row">
-                            <h2>Experience Design</h2>
-                            <span class="member-badge">12 Members</span>
+                            <h2 id="practice-main-title">Experience Design</h2>
+                            <span class="member-badge" id="practice-member-badge">12 Members</span>
                         </div>
-                        <p class="practice-description">We design enterprise-grade product experiences that translate complex domain workflows into intuitive interfaces — combining research, systems thinking, and AI-native interaction patterns to accelerate adoption across our clients' organizations.</p>
+                        <p class="practice-description" id="practice-main-desc">We design enterprise-grade product experiences that translate complex domain workflows into intuitive interfaces — combining research, systems thinking, and AI-native interaction patterns to accelerate adoption across our clients' organizations.</p>
                     </div>
 
                     <!-- Tabs Navigation -->

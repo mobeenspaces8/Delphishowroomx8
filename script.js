@@ -1,4 +1,4 @@
-// Configure GSAP Plugins
+﻿// Configure GSAP Plugins
 gsap.registerPlugin(ScrollTrigger);
 
 // --- Configuration & Assets --- //
@@ -1052,3 +1052,81 @@ document.addEventListener('keydown', (e) => {
         }
     }
 });
+
+// --- Practices Screen Interactions --- //
+function filterPractices() {
+    const input = document.getElementById("practices-search");
+    if (!input) return;
+    const filter = input.value.toUpperCase();
+    const ul = document.getElementById("practices-list");
+    if (!ul) return;
+    const li = ul.getElementsByTagName("li");
+
+    for (let i = 0; i < li.length; i++) {
+        const txtValue = li[i].textContent || li[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+
+const practiceData = {
+    "Experience Design": {
+        desc: "We design enterprise-grade product experiences that translate complex domain workflows into intuitive interfaces — combining research, systems thinking, and AI-native interaction patterns to accelerate adoption across our clients' organizations.",
+        members: "12 Members"
+    },
+    "Product Owner & Business Analysis": {
+        desc: "Bridging the gap between business objectives and technical execution. Our experts map complex requirements, define product strategies, and ensure seamless delivery of AI and data solutions that drive real value.",
+        members: "8 Members"
+    },
+    "Data Functional": {
+        desc: "Domain experts who understand the nuances of healthcare, finance, and enterprise data. We ensure data strategies align perfectly with operational realities, regulatory compliance, and business goals.",
+        members: "5 Members"
+    },
+    "Data Engineering": {
+        desc: "Building robust, scalable data pipelines and architectures. We transform fragmented data silos into unified, high-performance data lakes and warehouses ready for advanced analytics and AI modeling.",
+        members: "24 Members"
+    },
+    "AI / ML Engineering": {
+        desc: "Designing and deploying state-of-the-art machine learning models. From predictive analytics to Generative AI and LLM integrations, we build intelligent engines that power next-generation applications.",
+        members: "18 Members"
+    },
+    "Solution Architecture": {
+        desc: "Crafting scalable, secure, and future-proof enterprise architectures. We design full-stack ecosystems that seamlessly integrate modern AI capabilities with legacy healthcare and enterprise systems.",
+        members: "9 Members"
+    },
+    "Quality Engineering": {
+        desc: "Ensuring flawless execution through rigorous automated testing, performance tuning, and security validations. We guarantee enterprise reliability and compliance for all mission-critical AI applications.",
+        members: "15 Members"
+    },
+    "Project Management": {
+        desc: "Orchestrating complex technology deliveries with precision. Using agile methodologies, we manage timelines, resources, and risks to ensure on-time, high-quality deployments of transformational solutions.",
+        members: "7 Members"
+    }
+};
+
+function selectPractice(element) {
+    const ul = document.getElementById("practices-list");
+    if (ul) {
+        const lis = ul.getElementsByTagName("li");
+        for (let i = 0; i < lis.length; i++) {
+            lis[i].classList.remove('active');
+        }
+    }
+    element.classList.add('active');
+
+    const practiceName = element.textContent.trim();
+
+    const titleEl = document.getElementById("practice-main-title");
+    const descEl = document.getElementById("practice-main-desc");
+    const badgeEl = document.getElementById("practice-member-badge");
+
+    if (titleEl) titleEl.innerText = practiceName;
+    
+    if (practiceData[practiceName]) {
+        if (descEl) descEl.innerText = practiceData[practiceName].desc;
+        if (badgeEl) badgeEl.innerText = practiceData[practiceName].members;
+    }
+}

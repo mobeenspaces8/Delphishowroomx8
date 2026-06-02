@@ -4186,3 +4186,38 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     mask-composite: add !important;
     pointer-events: none !important;
 }
+
+/* --- Sidebar Search --- */
+.sidebar-search-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+.sidebar-search-container .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    pointer-events: none;
+}
+.practices-search-input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 10px 10px 10px 36px;
+    color: #fff;
+    font-size: 0.9rem;
+    outline: none;
+    transition: all 0.2s ease;
+}
+.practices-search-input:focus {
+    border-color: rgba(233, 76, 23, 0.5);
+    background: rgba(0, 0, 0, 0.3);
+}
+.practices-search-input::placeholder {
+    color: #666;
+}
+.sidebar-nav li {
+    cursor: pointer;
+}
