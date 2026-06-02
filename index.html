@@ -624,33 +624,11 @@
                             </div>
                         </div>
 
-                        <!-- Bottom Row: 70/30 Split for Gallery and Testimonials -->
-                        <div class="overview-bottom-row">
-                            <!-- Image Library Section (70%) -->
-                            <div class="overview-sec sec-image-library">
-                                <h3 class="sec-heading align-left">View Image Library</h3>
-                                <div class="interactive-image-library">
-                                    <div class="main-featured-image" id="featured-image-container" onclick="openLightbox('Media/Card Images/Card Image 1.jpg', 'image')">
-                                        <img id="featured-image" src="Media/Card Images/Card Image 1.jpg" alt="Featured Image" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
-                                        <div class="hover-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
-                                    </div>
-                                    <div class="thumbnail-carousel-wrapper">
-                                        <button class="gallery-nav-btn" onclick="scrollGallery(-1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
-                                        <div class="thumbnail-scroll-track" id="thumbnail-scroll-track">
-                                            <div class="library-thumbnail active-thumb" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 1.jpg', 'image')"><img src="Media/Card Images/Card Image 1.jpg" alt="Patient intake UI"></div>
-                                            <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 2.jpg', 'image')"><img src="Media/Card Images/Card Image 2.jpg" alt="AI workflow"></div>
-                                            <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 3.jpg', 'image')"><img src="Media/Card Images/Card Image 3.jpg" alt="Dashboard view"></div>
-                                            <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'https://www.w3schools.com/html/mov_bbb.mp4', 'video')"><img src="Media/Card Images/Card Image 4.jpg" alt="Mobile patient form"></div>
-                                            <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 5.jpg', 'image')"><img src="Media/Card Images/Card Image 5.jpg" alt="Hospital staff interface"></div>
-                                            <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 1.jpg', 'image')"><img src="Media/Card Images/Card Image 1.jpg" alt="Automation process"></div>
-                                        </div>
-                                        <button class="gallery-nav-btn" onclick="scrollGallery(1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
-                                    </div>
-                                </div>
-                            </div>
+                        <!-- Bottom Row: Testimonials -->
+                        <div class="overview-bottom-row" style="flex-direction: column;">
 
-                            <!-- Client Stories Section (30%) -->
-                            <div class="overview-sec sec-client-stories">
+                            <!-- Client Stories Section (100%) -->
+                            <div class="overview-sec sec-client-stories" style="width: 100%;">
                                 <h3 class="sec-heading align-left">Stories Shared by Client</h3>
                                 <div class="premium-testimonial-card">
                                     <div class="quote-icon">“</div>
@@ -676,32 +654,95 @@
                     </div>
                 </div>
                 <div id="tab-process" class="tab-pane hidden">
-                    <div class="placeholder-box"
-                        style="background-image: url('Media/Healthcare\\ Services/4.\\ Shawroom-\\ Process.jpg'); background-size: cover; background-position: center;">
-                        <span
-                            style="background: rgba(0,0,0,0.5); padding: 10px 20px; border-radius: 10px; color: #fff;">Process
-                            Timeline</span>
+                    <div class="process-grid-container">
+                        <div class="process-card">
+                            <span class="process-step">01</span>
+                            <h3>Patient Form Upload</h3>
+                            <p>Intake documents are securely uploaded via portal, email, or fax channels.</p>
+                        </div>
+                        <div class="process-card">
+                            <span class="process-step">02</span>
+                            <h3>Document Ingestion</h3>
+                            <p>Automated ingestion pipeline digitizes and routes documents for processing.</p>
+                        </div>
+                        <div class="process-card">
+                            <span class="process-step">03</span>
+                            <h3>OCR & Data Extraction</h3>
+                            <p>Advanced optical character recognition extracts raw text from varied formats.</p>
+                        </div>
+                        <div class="process-card">
+                            <span class="process-step">04</span>
+                            <h3>Field Classification</h3>
+                            <p>AI models classify extracted text into specific patient and clinical fields.</p>
+                        </div>
+                        <div class="process-card">
+                            <span class="process-step">05</span>
+                            <h3>Data Validation</h3>
+                            <p>Rule-based engine cross-references extracted data for accuracy and completeness.</p>
+                        </div>
+                        <div class="process-card">
+                            <span class="process-step">06</span>
+                            <h3>Identity Verification</h3>
+                            <p>Patient identity is verified against existing master patient indexes.</p>
+                        </div>
+                        <div class="process-card">
+                            <span class="process-step">07</span>
+                            <h3>Insurance Verification</h3>
+                            <p>Real-time API calls verify insurance eligibility and benefit coverage.</p>
+                        </div>
+                        <div class="process-card">
+                            <span class="process-step">08</span>
+                            <h3>Exception Review</h3>
+                            <p>Flagged documents are routed to a human-in-the-loop dashboard for review.</p>
+                        </div>
+                        <div class="process-card">
+                            <span class="process-step">09</span>
+                            <h3>System / EHR Entry</h3>
+                            <p>Validated structured data is pushed directly into the core EHR system.</p>
+                        </div>
+                        <div class="process-card">
+                            <span class="process-step">10</span>
+                            <h3>Intake Completion</h3>
+                            <p>Patient intake workflow concludes, triggering next-step notifications.</p>
+                        </div>
                     </div>
                 </div>
                 <div id="tab-tech-arch" class="tab-pane hidden">
-                    <div class="placeholder-box"
-                        style="background-image: url('Media/Healthcare\\ Services/5.\\ Shawroom-\\ Tech\\ Architecture.jpg'); background-size: cover; background-position: center;">
-                        <span
-                            style="background: rgba(0,0,0,0.5); padding: 10px 20px; border-radius: 10px; color: #fff;">Tech
-                            Architecture Diagram</span>
+                    <div class="tab-header-text">
+                        <h2>Automated Patient Intake – Architecture</h2>
+                        <p>High-level architecture showing how patient intake documents move through upload channels, OCR processing, AI extraction, validation, review workflow, and downstream healthcare systems.</p>
+                    </div>
+                    <div class="diagram-container">
+                        <img src="Media/Healthcare Services/tech_architecture.png" alt="Tech Architecture Diagram" style="width:100%; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);">
                     </div>
                 </div>
                 <div id="tab-engine-map" class="tab-pane hidden">
-                    <div class="placeholder-box"
-                        style="background-image: url('Media/Healthcare\\ Services/6.\\ Shawroom-\\ Engine\\ Map.jpg'); background-size: cover; background-position: center;">
-                        <span
-                            style="background: rgba(0,0,0,0.5); padding: 10px 20px; border-radius: 10px; color: #fff;">Engine
-                            Map / AI Flow</span>
+                    <div class="tab-header-text">
+                        <h2>Automated Patient Intake – Engine Map / AI Flow</h2>
+                        <p>AI flow showing how intake data is extracted, classified, validated, routed for exception handling, and converted into structured output for system entry.</p>
+                    </div>
+                    <div class="diagram-container">
+                        <img src="Media/Healthcare Services/ai_engine_map.png" alt="Engine Map Flow" style="width:100%; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);">
                     </div>
                 </div>
                 <div id="tab-gallery" class="tab-pane hidden">
-                    <div class="placeholder-box">
-                        <span style="background: rgba(0,0,0,0.5); padding: 10px 20px; border-radius: 10px; color: #fff;">Gallery</span>
+                    <div class="interactive-image-library" style="width: 100%; max-width: 1200px; margin: 0 auto;">
+                        <div class="main-featured-image" id="featured-image-container" onclick="openLightbox('Media/Card Images/Card Image 1.jpg', 'image')">
+                            <img id="featured-image" src="Media/Card Images/Card Image 1.jpg" alt="Featured Image" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+                            <div class="hover-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+                        </div>
+                        <div class="thumbnail-carousel-wrapper">
+                            <button class="gallery-nav-btn" onclick="scrollGallery(-1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+                            <div class="thumbnail-scroll-track" id="thumbnail-scroll-track">
+                                <div class="library-thumbnail active-thumb" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 1.jpg', 'image')"><img src="Media/Card Images/Card Image 1.jpg" alt="Patient intake UI"></div>
+                                <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 2.jpg', 'image')"><img src="Media/Card Images/Card Image 2.jpg" alt="AI workflow"></div>
+                                <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 3.jpg', 'image')"><img src="Media/Card Images/Card Image 3.jpg" alt="Dashboard view"></div>
+                                <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'https://www.w3schools.com/html/mov_bbb.mp4', 'video')"><img src="Media/Card Images/Card Image 4.jpg" alt="Mobile patient form"></div>
+                                <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 5.jpg', 'image')"><img src="Media/Card Images/Card Image 5.jpg" alt="Hospital staff interface"></div>
+                                <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 1.jpg', 'image')"><img src="Media/Card Images/Card Image 1.jpg" alt="Automation process"></div>
+                            </div>
+                            <button class="gallery-nav-btn" onclick="scrollGallery(1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+                        </div>
                     </div>
                 </div>
             </div>
