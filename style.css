@@ -4152,3 +4152,37 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     opacity: 0.6 !important;
     filter: blur(10px) !important;
 }
+
+/* --- GlowingBeam Button Effect (Quick Links & Secondary) --- */
+.quick-link-btn:not(.active):hover {
+    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.15), 0 15px 35px -10px rgba(255, 255, 255, 0.1) !important;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8) !important;
+    background: linear-gradient(rgba(20, 20, 25, 0.9), rgba(20, 20, 25, 0.9)) padding-box,
+                conic-gradient(from var(--beam-angle), rgba(255,255,255,0.05) 0%, rgba(255, 255, 255, 0.1) 60%, #ffffff 80%, rgba(255,255,255,0.05) 100%) border-box !important;
+}
+
+.quick-link-btn:not(.active):hover::before {
+    display: block !important;
+    content: "" !important;
+    position: absolute !important;
+    inset: -2px !important;
+    background: conic-gradient(from var(--beam-angle), transparent 60%, #ffffff 80%, transparent 100%) !important;
+    border-radius: inherit !important;
+    opacity: 0.6 !important;
+    filter: blur(10px) !important;
+    z-index: -1 !important;
+}
+
+.quick-link-btn:not(.active):hover::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    border-radius: inherit !important;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent) !important;
+    background-size: 200% 100% !important;
+    opacity: 1 !important;
+    animation: beamGlareSweep 2s infinite linear !important;
+    -webkit-mask: none !important;
+    mask-composite: add !important;
+    pointer-events: none !important;
+}
