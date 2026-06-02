@@ -2864,3 +2864,79 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     display: flex;
     gap: 4px;
 }
+
+
+/* ==============================================
+   REFINEMENTS - 3RD ITERATION (Premium Glow)
+   ============================================== */
+
+/* Fix Hero Left Align by removing margin and max-width */
+.hero-left-col.align-left {
+    margin: 0 !important;
+    max-width: none !important;
+    align-items: flex-start !important;
+}
+
+/* Premium Glow Glassmorphic Button */
+.quick-link-btn, .external-action-btn {
+    position: relative !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #fff !important;
+    padding: 12px 24px !important;
+    border-radius: 12px !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    overflow: visible !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    z-index: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    text-decoration: none !important;
+    box-shadow: none !important; /* override old shadow */
+}
+
+/* Glowing Border Effect (behind the button) */
+.quick-link-btn::before, .external-action-btn::before {
+    content: '' !important;
+    position: absolute !important;
+    inset: -2px !important;
+    background: linear-gradient(45deg, #e94c17, #ff9a44, #ff5e22, #e94c17) !important;
+    background-size: 300% 300% !important;
+    z-index: -1 !important;
+    border-radius: 14px !important;
+    filter: blur(10px) !important;
+    opacity: 0 !important;
+    transition: opacity 0.4s ease !important;
+    animation: premiumGlowAnim 3s ease infinite !important;
+    pointer-events: none !important;
+}
+
+@keyframes premiumGlowAnim {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.quick-link-btn:hover, .external-action-btn:hover {
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    transform: translateY(-2px) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: none !important;
+}
+.quick-link-btn:hover::before, .external-action-btn:hover::before {
+    opacity: 0.8 !important;
+}
+
+/* Specific overrides for secondary external action buttons */
+.external-action-btn.btn-secondary {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+.external-action-btn.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+}
