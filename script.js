@@ -355,12 +355,16 @@ function goBackOneScreen() {
     } else if (screenClinical && !screenClinical.classList.contains('hidden')) {
         showHealthcareDetails(); // goes to landing
     } else {
-        // If on landing, go back to main site showcase
-        const mainContainer = document.getElementById('main-container');
-        if (mainContainer) mainContainer.classList.remove('hidden');
-        if (healthcareUiContainer) healthcareUiContainer.classList.add('hidden');
-        document.body.style.overflowY = 'hidden'; 
+        goToHome();
     }
+}
+
+function goToHome() {
+    // Return to the 3D Building Select (main canvas) screen
+    const mainContainer = document.getElementById('main-container');
+    if (mainContainer) mainContainer.classList.remove('hidden');
+    if (healthcareUiContainer) healthcareUiContainer.classList.add('hidden');
+    document.body.style.overflowY = 'hidden';
 }
 
 function showHealthcareDetails() {
@@ -584,6 +588,7 @@ function openClinicalScreen(cap) {
     const bcClinicalName = document.getElementById('bc-clinical-name');
     if (titleEl) titleEl.innerText = cap.title;
     if (descEl) descEl.innerText = cap.description;
+    // Update both breadcrumb spans (header subnav)
     if (bcClinicalName) bcClinicalName.innerText = cap.title;
     
     const searchInput = document.getElementById('search-use-case');
@@ -720,6 +725,14 @@ function openDeepDiveScreen(uc) {
     const subtitleEl = document.getElementById('deep-dive-subtitle');
     if (titleEl) titleEl.innerText = uc.title;
     if (subtitleEl) subtitleEl.innerText = uc.desc;
+
+    // Update deep-dive breadcrumbs
+    const bcCapName = document.getElementById('bc-cap-name');
+    const bcUsecaseName = document.getElementById('bc-usecase-name');
+    const currentCap = healthcareData.find(c => c.id === currentCapabilityId);
+    if (bcCapName && currentCap) bcCapName.innerText = currentCap.title;
+    if (bcUsecaseName) bcUsecaseName.innerText = uc.title;
+
 
     // AI Generated Rich Content Injection
     const overviewPane = document.getElementById('tab-overview');
