@@ -434,8 +434,8 @@ function renderUseCases() {
         card.className = 'use-case-card highlight-card';
         card.style.position = 'relative';
         
-        card.innerHTML = \`
-            <div class="card-img" style="background-image: url('\${uc.image}');">
+        card.innerHTML = `
+            <div class="card-img" style="background-image: url('${uc.image}');">
                 <div class="card-glass-icon">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M12 20V10M18 20V4M6 20v-4"/>
@@ -444,25 +444,25 @@ function renderUseCases() {
             </div>
             <div class="card-content">
                 <div class="card-tags">
-                    <span class="tag-pill domain">\${uc.domain.toUpperCase()}</span>
-                    <span class="tag-pill tech">\${uc.tech.replace('-', ' ').toUpperCase()}</span>
+                    <span class="tag-pill domain">${uc.domain.toUpperCase()}</span>
+                    <span class="tag-pill tech">${uc.tech.replace('-', ' ').toUpperCase()}</span>
                 </div>
-                <h3>\${uc.title}</h3>
-                <p>\${uc.desc}</p>
+                <h3>${uc.title}</h3>
+                <p>${uc.desc}</p>
                 
                 <div class="card-footer-impact">
                     <div class="impact-stats">
                         <span class="impact-title">Business Impact</span>
-                        <span class="impact-value" style="font-size:1.1rem; color:#fff;">\${uc.impact}</span>
+                        <span class="impact-value" style="font-size:1.1rem; color:#fff;">${uc.impact}</span>
                     </div>
                 </div>
                 
                 <div class="card-actions">
-                    <button class="btn-demo" onclick="event.stopPropagation(); openDeepDiveScreen('\${uc.id}')">Demo</button>
-                    <button class="btn-proto" onclick="event.stopPropagation(); openDeepDiveScreen('\${uc.id}')">View Prototype</button>
+                    <button class="btn-demo" onclick="event.stopPropagation(); openDeepDiveScreen('${uc.id}')">Demo</button>
+                    <button class="btn-proto" onclick="event.stopPropagation(); openDeepDiveScreen('${uc.id}')">View Prototype</button>
                 </div>
             </div>
-        \`;
+        `;
         
         card.addEventListener('click', () => openDeepDiveScreen(uc.id));
         grid.appendChild(card);
