@@ -566,6 +566,28 @@ function initImageLibraryCarousel() {
     // Basic implementation since it's a grid in the new HTML, but just in case we kept the carousel class
 }
 
+function openLightbox(src, type) {
+    zoomLightbox(0);
+    const modal = document.getElementById('lightbox-modal');
+    const content = document.getElementById('lightbox-content');
+    if (!modal || !content) return;
+    
+    content.innerHTML = '';
+    if (type === 'video') {
+        const video = document.createElement('video');
+        video.src = src;
+        video.controls = true;
+        video.autoplay = true;
+        content.appendChild(video);
+    } else {
+        const img = document.createElement('img');
+        img.src = src;
+        content.appendChild(img);
+    }
+    
+    modal.classList.remove('hidden');
+}
+
 function closeLightbox() {
     const modal = document.getElementById('lightbox-modal');
     const content = document.getElementById('lightbox-content');
@@ -573,8 +595,47 @@ function closeLightbox() {
     if (content) content.innerHTML = '';
 }
 
+function updateFeaturedImage(element, src, type) {
+    // Update active state
+    document.querySelectorAll('.library-thumbnail').forEach(t => t.classList.remove('active-thumb'));
+    if(element) element.classList.add('active-thumb');
+    
+    // Update main image display
+    const featuredContainer = document.getElementById('featured-image-container');
+    if(!featuredContainer) return;
+    
+    // Apply fade out animation
+    featuredContainer.classList.add('fade-anim');
+    
+    setTimeout(() => {
+        if (type === 'video') {
+            featuredContainer.innerHTML = `
+                <video id="featured-image" src="${src}" autoplay muted loop style="width:100%; height:100%; object-fit:cover; border-radius:12px;"></video>
+                <div class="hover-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></div>
+            `;
+            featuredContainer.onclick = () => openLightbox(src, 'video');
+        } else {
+            featuredContainer.innerHTML = `
+                <img id="featured-image" src="${src}" alt="Featured Image" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+                <div class="hover-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+            `;
+            featuredContainer.onclick = () => openLightbox(src, 'image');
+        }
+        
+        // Remove fade out to trigger fade in
+        setTimeout(() => {
+            featuredContainer.classList.remove('fade-anim');
+        }, 50);
+    }, 300); // 300ms matches a quick fade out duration
+}
 
-
+function scrollGallery(direction) {
+    const track = document.getElementById('thumbnail-scroll-track');
+    if(track) {
+        // Scroll by 2 thumbnail widths approx (140px + gap) * 2 = 300px
+        track.scrollBy({ left: direction * 300, behavior: 'smooth' });
+    }
+}
 
 // Lightbox Escape Key Listener
 document.addEventListener('keydown', (e) => {
@@ -924,8 +985,58 @@ document.querySelectorAll('.practice-tab').forEach(tab => {
 });
 
 // AI Practice Gallery Logic
+function updateAiFeaturedImage(element, src, type) {
+    const track = document.getElementById('ai-thumbnail-scroll-track');
+    if(!track) return;
+    
+    // Update active state
+    track.querySelectorAll('.library-thumbnail').forEach(t => t.classList.remove('active-thumb'));
+    if(element) element.classList.add('active-thumb');
+    
+    // Update main image display
+    const featuredContainer = document.getElementById('ai-featured-image-container');
+    if(!featuredContainer) return;
+    
+    // Apply fade out animation
+    featuredContainer.classList.add('fade-anim');
+    
+    // Hide overlay text if clicking anything other than the first process slide
+    const overlay = document.getElementById('ai-slide-overlay');
+    if(overlay) {
+        // A simple check: if it's the first thumbnail, show overlay, else hide
+        const isFirst = element.querySelector('.thumb-label') && element.querySelector('.thumb-label').innerText.includes('01');
+        overlay.style.display = isFirst ? 'flex' : 'none';
+    }
+    
+    setTimeout(() => {
+        if (type === 'video') {
+            featuredContainer.innerHTML = `
+                <video id="ai-featured-image" src="${src}" autoplay muted loop style="width:100%; height:100%; object-fit:cover; border-radius:12px;"></video>
+                <div class="hover-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></div>
+            `;
+            if(overlay) featuredContainer.appendChild(overlay);
+            featuredContainer.onclick = () => openLightbox(src, 'video');
+        } else {
+            featuredContainer.innerHTML = `
+                <img id="ai-featured-image" src="${src}" alt="Featured Image" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+                <div class="hover-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+            `;
+            if(overlay) featuredContainer.appendChild(overlay);
+            featuredContainer.onclick = () => openLightbox(src, 'image');
+        }
+        
+        setTimeout(() => {
+            featuredContainer.classList.remove('fade-anim');
+        }, 50);
+    }, 300);
+}
 
-
+function scrollAiGallery(direction) {
+    const track = document.getElementById('ai-thumbnail-scroll-track');
+    if(track) {
+        track.scrollBy({ left: direction * 300, behavior: 'smooth' });
+    }
+}
 
 function openPracticesTab(tabId) {
     openScreen('screen-frameworks');
