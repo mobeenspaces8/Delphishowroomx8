@@ -605,20 +605,48 @@ function updateFeaturedImage(element, src, type) {
     const featuredContainer = document.getElementById('featured-image-container');
     if(!featuredContainer) return;
     
-    if (type === 'video') {
-        featuredContainer.innerHTML = `
-            <video id="featured-image" src="${src}" autoplay muted loop style="width:100%; height:100%; object-fit:cover; border-radius:12px;"></video>
-            <div class="hover-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></div>
-        `;
-        featuredContainer.onclick = () => openLightbox(src, 'video');
-    } else {
-        featuredContainer.innerHTML = `
-            <img id="featured-image" src="${src}" alt="Featured Image" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
-            <div class="hover-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
-        `;
-        featuredContainer.onclick = () => openLightbox(src, 'image');
+    // Apply fade out animation
+    featuredContainer.classList.add('fade-anim');
+    
+    setTimeout(() => {
+        if (type === 'video') {
+            featuredContainer.innerHTML = `
+                <video id="featured-image" src="${src}" autoplay muted loop style="width:100%; height:100%; object-fit:cover; border-radius:12px;"></video>
+                <div class="hover-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></div>
+            `;
+            featuredContainer.onclick = () => openLightbox(src, 'video');
+        } else {
+            featuredContainer.innerHTML = `
+                <img id="featured-image" src="${src}" alt="Featured Image" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+                <div class="hover-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+            `;
+            featuredContainer.onclick = () => openLightbox(src, 'image');
+        }
+        
+        // Remove fade out to trigger fade in
+        setTimeout(() => {
+            featuredContainer.classList.remove('fade-anim');
+        }, 50);
+    }, 300); // 300ms matches a quick fade out duration
+}
+
+function scrollGallery(direction) {
+    const track = document.getElementById('thumbnail-scroll-track');
+    if(track) {
+        // Scroll by 2 thumbnail widths approx (140px + gap) * 2 = 300px
+        track.scrollBy({ left: direction * 300, behavior: 'smooth' });
     }
 }
+
+// Lightbox Escape Key Listener
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const modal = document.getElementById('lightbox-modal');
+        if (modal && !modal.classList.contains('hidden')) {
+            closeLightbox();
+        }
+    }
+});
 
 // Deep Dive Tabs Logic
 document.querySelectorAll('.dd-tab').forEach(tab => {

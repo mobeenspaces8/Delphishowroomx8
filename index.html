@@ -356,13 +356,17 @@
                                     <img id="featured-image" src="Media/Card Images/Card Image 1.jpg" alt="Featured Image" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
                                     <div class="hover-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
                                 </div>
-                                <div class="thumbnail-scroll-track">
-                                    <div class="library-thumbnail active-thumb" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 1.jpg', 'image')"><img src="Media/Card Images/Card Image 1.jpg" alt="Patient intake UI"></div>
-                                    <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 2.jpg', 'image')"><img src="Media/Card Images/Card Image 2.jpg" alt="AI workflow"></div>
-                                    <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 3.jpg', 'image')"><img src="Media/Card Images/Card Image 3.jpg" alt="Dashboard view"></div>
-                                    <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'https://www.w3schools.com/html/mov_bbb.mp4', 'video')"><img src="Media/Card Images/Card Image 4.jpg" alt="Mobile patient form"></div>
-                                    <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 5.jpg', 'image')"><img src="Media/Card Images/Card Image 5.jpg" alt="Hospital staff interface"></div>
-                                    <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 1.jpg', 'image')"><img src="Media/Card Images/Card Image 1.jpg" alt="Automation process"></div>
+                                <div class="thumbnail-carousel-wrapper">
+                                    <button class="gallery-nav-btn" onclick="scrollGallery(-1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+                                    <div class="thumbnail-scroll-track" id="thumbnail-scroll-track">
+                                        <div class="library-thumbnail active-thumb" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 1.jpg', 'image')"><img src="Media/Card Images/Card Image 1.jpg" alt="Patient intake UI"></div>
+                                        <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 2.jpg', 'image')"><img src="Media/Card Images/Card Image 2.jpg" alt="AI workflow"></div>
+                                        <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 3.jpg', 'image')"><img src="Media/Card Images/Card Image 3.jpg" alt="Dashboard view"></div>
+                                        <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'https://www.w3schools.com/html/mov_bbb.mp4', 'video')"><img src="Media/Card Images/Card Image 4.jpg" alt="Mobile patient form"></div>
+                                        <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 5.jpg', 'image')"><img src="Media/Card Images/Card Image 5.jpg" alt="Hospital staff interface"></div>
+                                        <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 1.jpg', 'image')"><img src="Media/Card Images/Card Image 1.jpg" alt="Automation process"></div>
+                                    </div>
+                                    <button class="gallery-nav-btn" onclick="scrollGallery(1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
                                 </div>
                             </div>
                         </div>
@@ -436,7 +440,7 @@
         <button class="lightbox-close-btn" onclick="closeLightbox()">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
-        <div class="lightbox-content" id="lightbox-content">
+        <div class="lightbox-content" id="lightbox-content" onclick="closeLightbox()">
             <!-- Media injected here via JS -->
         </div>
     </div>
