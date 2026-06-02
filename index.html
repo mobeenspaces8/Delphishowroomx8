@@ -348,48 +348,51 @@
                             </div>
                         </div>
 
-                        <!-- Image Library Section -->
-                        <div class="overview-sec sec-image-library">
-                            <h3 class="sec-heading align-left">View Image Library</h3>
-                            <div class="interactive-image-library">
-                                <div class="main-featured-image" id="featured-image-container" onclick="openLightbox('Media/Card Images/Card Image 1.jpg', 'image')">
-                                    <img id="featured-image" src="Media/Card Images/Card Image 1.jpg" alt="Featured Image" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
-                                    <div class="hover-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
-                                </div>
-                                <div class="thumbnail-carousel-wrapper">
-                                    <button class="gallery-nav-btn" onclick="scrollGallery(-1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
-                                    <div class="thumbnail-scroll-track" id="thumbnail-scroll-track">
-                                        <div class="library-thumbnail active-thumb" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 1.jpg', 'image')"><img src="Media/Card Images/Card Image 1.jpg" alt="Patient intake UI"></div>
-                                        <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 2.jpg', 'image')"><img src="Media/Card Images/Card Image 2.jpg" alt="AI workflow"></div>
-                                        <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 3.jpg', 'image')"><img src="Media/Card Images/Card Image 3.jpg" alt="Dashboard view"></div>
-                                        <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'https://www.w3schools.com/html/mov_bbb.mp4', 'video')"><img src="Media/Card Images/Card Image 4.jpg" alt="Mobile patient form"></div>
-                                        <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 5.jpg', 'image')"><img src="Media/Card Images/Card Image 5.jpg" alt="Hospital staff interface"></div>
-                                        <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 1.jpg', 'image')"><img src="Media/Card Images/Card Image 1.jpg" alt="Automation process"></div>
+                        <!-- Bottom Row: 70/30 Split for Gallery and Testimonials -->
+                        <div class="overview-bottom-row">
+                            <!-- Image Library Section (70%) -->
+                            <div class="overview-sec sec-image-library">
+                                <h3 class="sec-heading align-left">View Image Library</h3>
+                                <div class="interactive-image-library">
+                                    <div class="main-featured-image" id="featured-image-container" onclick="openLightbox('Media/Card Images/Card Image 1.jpg', 'image')">
+                                        <img id="featured-image" src="Media/Card Images/Card Image 1.jpg" alt="Featured Image" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+                                        <div class="hover-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
                                     </div>
-                                    <button class="gallery-nav-btn" onclick="scrollGallery(1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+                                    <div class="thumbnail-carousel-wrapper">
+                                        <button class="gallery-nav-btn" onclick="scrollGallery(-1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+                                        <div class="thumbnail-scroll-track" id="thumbnail-scroll-track">
+                                            <div class="library-thumbnail active-thumb" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 1.jpg', 'image')"><img src="Media/Card Images/Card Image 1.jpg" alt="Patient intake UI"></div>
+                                            <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 2.jpg', 'image')"><img src="Media/Card Images/Card Image 2.jpg" alt="AI workflow"></div>
+                                            <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 3.jpg', 'image')"><img src="Media/Card Images/Card Image 3.jpg" alt="Dashboard view"></div>
+                                            <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'https://www.w3schools.com/html/mov_bbb.mp4', 'video')"><img src="Media/Card Images/Card Image 4.jpg" alt="Mobile patient form"></div>
+                                            <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 5.jpg', 'image')"><img src="Media/Card Images/Card Image 5.jpg" alt="Hospital staff interface"></div>
+                                            <div class="library-thumbnail" onclick="updateFeaturedImage(this, 'Media/Card Images/Card Image 1.jpg', 'image')"><img src="Media/Card Images/Card Image 1.jpg" alt="Automation process"></div>
+                                        </div>
+                                        <button class="gallery-nav-btn" onclick="scrollGallery(1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Client Stories Section -->
-                        <div class="overview-sec sec-client-stories">
-                            <h3 class="sec-heading align-left">Stories Shared by Client</h3>
-                            <div class="premium-testimonial-card">
-                                <div class="quote-icon">“</div>
-                                <p class="premium-quote">The automated intake system revolutionized our front desk operations. Patients are seen faster, and our staff is no longer bogged down by manual paperwork. Delphi AI delivered exactly what we needed.</p>
-                                <div class="premium-client-meta">
-                                    <div class="premium-avatar">SJ</div>
-                                    <div class="premium-details">
-                                        <span class="premium-name">Sarah Jenkins</span>
-                                        <span class="premium-role">Director of Operations</span>
-                                        <span class="premium-company">Metro Health Systems</span>
-                                    </div>
-                                    <div class="trust-rating">
-                                        <svg width="16" height="16" fill="#e94c17" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                        <svg width="16" height="16" fill="#e94c17" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                        <svg width="16" height="16" fill="#e94c17" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                        <svg width="16" height="16" fill="#e94c17" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                        <svg width="16" height="16" fill="#e94c17" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <!-- Client Stories Section (30%) -->
+                            <div class="overview-sec sec-client-stories">
+                                <h3 class="sec-heading align-left">Stories Shared by Client</h3>
+                                <div class="premium-testimonial-card">
+                                    <div class="quote-icon">“</div>
+                                    <p class="premium-quote">The automated intake system revolutionized our front desk operations. Patients are seen faster, and our staff is no longer bogged down by manual paperwork. Delphi AI delivered exactly what we needed.</p>
+                                    <div class="premium-client-meta">
+                                        <div class="premium-avatar">SJ</div>
+                                        <div class="premium-details">
+                                            <span class="premium-name">Sarah Jenkins</span>
+                                            <span class="premium-role">Director of Operations</span>
+                                            <span class="premium-company">Metro Health Systems</span>
+                                        </div>
+                                        <div class="trust-rating">
+                                            <svg width="16" height="16" fill="#e94c17" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                            <svg width="16" height="16" fill="#e94c17" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                            <svg width="16" height="16" fill="#e94c17" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                            <svg width="16" height="16" fill="#e94c17" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                            <svg width="16" height="16" fill="#e94c17" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

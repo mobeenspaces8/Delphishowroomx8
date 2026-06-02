@@ -3231,3 +3231,54 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     transform: rotate(90deg) !important;
     border-color: #e94c17 !important;
 }
+
+
+/* ==============================================
+   REFINEMENTS - 7TH ITERATION (Bottom Row 70/30 Layout)
+   ============================================== */
+
+.overview-bottom-row {
+    display: flex;
+    gap: 30px;
+    align-items: stretch;
+    margin-top: 30px;
+}
+
+.overview-bottom-row > .sec-image-library {
+    flex: 7;
+    min-width: 0;
+    margin-top: 0; 
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure the interactive library takes up remaining height to match testimonial if needed */
+.overview-bottom-row > .sec-image-library .interactive-image-library {
+    flex: 1;
+}
+
+.overview-bottom-row > .sec-client-stories {
+    flex: 3;
+    min-width: 0;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sec-client-stories .premium-testimonial-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (max-width: 1200px) {
+    .overview-bottom-row {
+        flex-direction: column;
+    }
+    .overview-bottom-row > .sec-image-library,
+    .overview-bottom-row > .sec-client-stories {
+        flex: none;
+        width: 100%;
+    }
+}
