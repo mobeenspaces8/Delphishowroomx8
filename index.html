@@ -127,116 +127,91 @@
                 </div>
             </header>
 
-            <div class="hc-hero landing-hero">
-                <div class="hero-left-col">
+            <div class="hc-hero landing-hero no-right-col">
+                <div class="hero-left-col full-width">
                     <h1>Healthcare Capabilities</h1>
                     <p>Drive better patient outcomes, smarter operations, secure compliance, and faster digital transformation across the healthcare ecosystem with AI-powered capabilities.</p>
 
                     <div class="hc-tabs">
-                        <button class="tab active">Explore Use Cases <span class="arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button>
-                        <button class="tab"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg></span> Data Models</button>
-                        <button class="tab"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></span> Frameworks</button>
-                        <button class="tab"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Best Practices</button>
+                        <button class="tab" onclick="showPlaceholder('Data Models')"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg></span> Data Models</button>
+                        <button class="tab" onclick="showPlaceholder('Frameworks')"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></span> Frameworks</button>
+                        <button class="tab" onclick="showPlaceholder('Best Practices')"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Best Practices</button>
                     </div>
-                </div>
-                <div class="hero-right-col">
-                    <img src="Media/hero_medical_cross.png" alt="3D Glowing Medical Cross" class="hero-3d-visual">
                 </div>
             </div>
 
             <div class="hc-content-area">
                 <div class="capabilities-section">
                     <div class="cap-header">
-                        <h2><span class="dot"></span> Featured Healthcare Capabilities</h2>
-                        <button class="view-all">View All Capabilities</button>
+                        <h2><span class="dot"></span> Healthcare Use Cases</h2>
                     </div>
+                    
+                    <!-- New Filter Bar -->
+                    <div class="advanced-filter-bar">
+                        <div class="filter-group">
+                            <select id="filter-usecase" class="filter-select">
+                                <option value="all">Use Case</option>
+                                <option value="patient-intake">Patient Intake</option>
+                                <option value="clinical-ops">Clinical Ops</option>
+                                <option value="revenue-cycle">Revenue Cycle</option>
+                            </select>
+                            <select id="filter-tech" class="filter-select">
+                                <option value="all">Technology</option>
+                                <option value="generative-ai">Generative AI</option>
+                                <option value="predictive-ml">Predictive ML</option>
+                                <option value="nlp">NLP</option>
+                                <option value="computer-vision">Computer Vision</option>
+                            </select>
+                            <select id="filter-domain" class="filter-select">
+                                <option value="all">Domain</option>
+                                <option value="hospital">Hospital</option>
+                                <option value="clinic">Clinic</option>
+                                <option value="pharmacy">Pharmacy</option>
+                                <option value="insurance">Insurance</option>
+                            </select>
+                            <select id="filter-project" class="filter-select">
+                                <option value="all">Project Type</option>
+                                <option value="poc">Proof of Concept</option>
+                                <option value="mvp">MVP</option>
+                                <option value="production">Production</option>
+                            </select>
+                        </div>
+                        <div class="search-group">
+                            <div class="search-input-wrapper">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                                <input type="text" id="search-cards" placeholder="Search use cases...">
+                            </div>
+                            <button id="clear-filters" class="clear-btn">Clear Filters</button>
+                        </div>
+                    </div>
+
                     <div class="cap-grid" id="capabilities-grid">
                         <!-- Capability cards will be injected by JavaScript -->
                     </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Screen 2: Clinical Details -->
-        <section id="screen-clinical" class="hidden">
-            <header class="universal-header">
-                <!-- Row 1: Global Brand Bar -->
-                <div class="header-brand-bar">
-                    <div class="logo" id="logo-clinical" onclick="goToHome()">
-                        <img src="Media/Delphi x AI.png" alt="Delphi x AI">
-                    </div>
-                    <div class="header-actions">
-                        <button class="icon-btn" title="Notifications">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
-                        </button>
-                        <div class="user-profile-container">
-                            <button class="icon-btn user-profile-btn" title="User Menu">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                            </button>
-                            <div class="profile-dropdown">
-                                <label class="admin-toggle">
-                                    <input type="checkbox" class="admin-checkbox" onchange="document.getElementById('btn-admin-toggle').click()">
-                                    <span class="toggle-slider"></span>
-                                    Admin Mode
-                                </label>
-                            </div>
+                    <!-- Pagination -->
+                    <div class="pagination-container">
+                        <button class="page-btn prev-btn" id="page-prev" disabled>Previous</button>
+                        <div class="page-numbers" id="page-numbers">
+                            <!-- Page numbers injected by JS -->
                         </div>
-                    </div>
-                </div>
-                <!-- Row 2: Contextual Sub-Nav -->
-                <div class="header-subnav">
-                    <button class="back-nav-btn" onclick="goBackOneScreen()">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-                        <span>Healthcare</span>
-                    </button>
-                    <nav class="breadcrumbs" id="breadcrumbs-clinical">
-                        <span class="bc-crumb bc-link" onclick="goToHome()">Home</span>
-                        <span class="bc-sep">›</span>
-                        <span class="bc-crumb bc-link" onclick="showHealthcareDetails()">Healthcare</span>
-                        <span class="bc-sep">›</span>
-                        <span class="bc-crumb bc-current" id="bc-clinical-name">Capability</span>
-                    </nav>
-                </div>
-            </header>
-
-            <div class="hc-hero">
-                <h1 id="clinical-hero-title">Clinical Document Intelligence</h1>
-                <p id="clinical-hero-desc">Turn unstructured clinical documents into validated, structured insights for
-                    faster and more accurate care decisions.</p>
-            </div>
-
-            <div class="clinical-content">
-                <div class="sidebar">
-                    <button class="side-btn active"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg></span> All Use Cases</button>
-                    <button class="side-btn"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg></span> Revenue Cycle</button>
-                    <button class="side-btn highlight"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span> Clinical Operations</button>
-                    <button class="side-btn"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg></span> Patient Access</button>
-                    <button class="side-btn"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Quality & Compliance</button>
-                </div>
-                <div class="main-panel">
-                    <div class="filters">
-                        <input type="text" placeholder="Search Use Case.." id="search-use-case" class="search-use-case">
-                        <select id="filter-category">
-                            <option value="all">All Categories</option>
-                            <option value="operational">Operational</option>
-                            <option value="clinical">Clinical</option>
-                            <option value="financial">Financial</option>
-                        </select>
-                        <select id="filter-workflow">
-                            <option value="all">All Workflows</option>
-                            <option value="patient-intake">Patient Intake</option>
-                            <option value="billing">Billing & Claims</option>
-                            <option value="care-delivery">Care Delivery</option>
-                        </select>
-                    </div>
-                    <div class="use-case-grid" id="use-cases-grid">
-                        <!-- Use cases injected by JavaScript -->
+                        <button class="page-btn next-btn" id="page-next">Next</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Screen 3: Solution Deep Dive -->
+        <!-- Placeholder Screens -->
+        <section id="screen-placeholder" class="hidden">
+            <div class="placeholder-content">
+                <h2 id="placeholder-title">Coming Soon</h2>
+                <p>This section is currently under development.</p>
+                <button class="action-btn" onclick="goBackOneScreen()">Go Back</button>
+            </div>
+        </section>
+
+
+        <!-- Screen 3: Solution Deep Dive (Automated Patient Intake) -->
         <section id="screen-deep-dive" class="hidden">
             <header class="universal-header">
                 <!-- Row 1: Global Brand Bar -->
@@ -273,113 +248,114 @@
                         <span class="bc-sep">›</span>
                         <span class="bc-crumb bc-link" onclick="showHealthcareDetails()">Healthcare</span>
                         <span class="bc-sep">›</span>
-                        <span class="bc-crumb bc-link" onclick="goBackOneScreen()" id="bc-cap-name">Capability</span>
-                        <span class="bc-sep">›</span>
                         <span class="bc-crumb bc-current" id="bc-usecase-name">Use Case</span>
                     </nav>
                 </div>
             </header>
 
-            <div class="top-action-bar">
-                <button class="action-btn">Try Demo</button>
-                <button class="action-btn btn-secondary">View Prototype</button>
-                <button class="action-btn btn-secondary">Watch Video</button>
-                <button class="action-btn">Gallery</button>
-            </div>
-
             <div class="deep-dive-hero">
-                <h1 id="deep-dive-title">Use Case Title</h1>
-                <p id="deep-dive-subtitle">Use case subtitle/description goes here.</p>
+                <h1 id="deep-dive-title">Automated Patient Intake</h1>
+                <p id="deep-dive-subtitle">Streamline patient onboarding with AI-driven data capture, smart routing, and seamless integration.</p>
+                <div class="top-action-bar">
+                    <button class="action-btn">Try Demo</button>
+                    <button class="action-btn btn-secondary">View Prototype</button>
+                    <button class="action-btn btn-secondary">Watch Video</button>
+                </div>
             </div>
 
             <!-- Tabbed Interface -->
             <div class="deep-dive-tabs">
                 <button class="dd-tab active" data-tab="overview">Overview</button>
                 <button class="dd-tab" data-tab="process">Process</button>
-                <button class="dd-tab" data-tab="tech-arch">Tech Architecture</button>
+                <button class="dd-tab" data-tab="tech-arch">Architecture</button>
                 <button class="dd-tab" data-tab="engine-map">Engine Map / AI Flow</button>
+                <button class="dd-tab" data-tab="gallery">Gallery</button>
             </div>
 
             <!-- Tab Content -->
             <div class="deep-dive-content">
                 <div id="tab-overview" class="tab-pane active">
                     <div class="overview-new-layout">
-                        <!-- Section 1 -->
+                        <!-- Full Screen Mockup Preview -->
+                        <div class="overview-mockup-preview">
+                            <img src="Media/Healthcare Services/3. Shawroom- Overview.jpg" alt="Patient Intake Mockup">
+                        </div>
+
+                        <!-- Main Overview Content -->
                         <div class="overview-sec sec-1">
-                            <div class="sec-1-left">
-                                <h2 class="sec-title">We Balance Business Objectives with Customer needs</h2>
+                            <div class="sec-1-left" style="width: 100%;">
+                                <h2 class="sec-title">We Balance Business Objectives with Customer Needs</h2>
                                 <div class="subtitle-buttons">
                                     <button class="action-btn">Digital Experiences</button>
                                     <button class="action-btn">Innovative Design</button>
                                     <button class="action-btn">Cutting-edge Tech</button>
                                 </div>
                             </div>
-                            <div class="sec-1-right">
-                                <div class="kpi-box">
-                                    <h3 class="kpi-num" data-val="100">0</h3><span class="kpi-suffix">%</span>
-                                    <p class="kpi-label">Engagement</p>
-                                </div>
-                                <div class="kpi-box">
-                                    <h3 class="kpi-num" data-val="10">0</h3><span class="kpi-suffix">x</span>
-                                    <p class="kpi-label">ROI Boost</p>
-                                </div>
-                                <div class="kpi-box">
-                                    <h3 class="kpi-num" data-val="50">0</h3><span class="kpi-suffix">+</span>
-                                    <p class="kpi-label">Projects</p>
-                                </div>
-                            </div>
                         </div>
 
-                        <!-- Section 2 -->
-                        <div class="overview-sec sec-2">
-                            <div class="full-width-img" style="background-image: url('Media/Healthcare\\ Services/3.\\ Shawroom-\\ Overview.jpg');"></div>
-                            <div class="sec-2-text">
-                                <h3>Strategic Implementation</h3>
-                                <p>Driving growth through data-driven methodologies and AI-powered capabilities.</p>
-                            </div>
-                        </div>
-
-                        <!-- Section 3 -->
-                        <div class="overview-sec sec-3">
-                            <div class="sec-3-grid">
-                                <div class="sec-3-item">
+                        <!-- Content Breakdown Section (Stacked Rows) -->
+                        <div class="overview-sec content-breakdown">
+                            <div class="breakdown-row">
+                                <div class="breakdown-left">
                                     <h4>01. Executive Summary</h4>
-                                    <p>Brief overview of the main points, interactive stats, and key findings that drive the process.</p>
                                 </div>
-                                <div class="sec-3-item">
+                                <div class="breakdown-right">
+                                    <p>An end-to-end automated intake solution designed to eliminate manual data entry, reduce wait times, and improve the overall patient onboarding experience leveraging advanced document intelligence and AI routing.</p>
+                                </div>
+                            </div>
+                            <div class="breakdown-row">
+                                <div class="breakdown-left">
                                     <h4>02. Problem</h4>
-                                    <p>The core challenge or bottleneck faced by the business and the customer in the current landscape.</p>
                                 </div>
-                                <div class="sec-3-item">
+                                <div class="breakdown-right">
+                                    <p>Healthcare facilities struggle with manual intake processes, leading to long waiting times, fragmented patient data, high administrative burden, and operational delays that negatively impact patient care.</p>
+                                </div>
+                            </div>
+                            <div class="breakdown-row">
+                                <div class="breakdown-left">
                                     <h4>03. Solution</h4>
-                                    <p>How our AI-powered capabilities and strategic design resolve these critical problems effectively.</p>
                                 </div>
-                                <div class="sec-3-item">
+                                <div class="breakdown-right">
+                                    <p>Delphi AI improves the intake process through intelligent automation, AI-driven data capture from IDs and referral forms, smart routing to appropriate departments, seamless EHR integration, and journey optimization.</p>
+                                </div>
+                            </div>
+                            <div class="breakdown-row">
+                                <div class="breakdown-left">
                                     <h4>04. Outcome</h4>
-                                    <p>Measurable improvements in engagement, operational efficiency, and overall customer satisfaction.</p>
+                                </div>
+                                <div class="breakdown-right">
+                                    <p>Measurable business and patient-care impact including 60% faster processing times, improved patient experience scores, significantly reduced administrative effort, and near-perfect data accuracy in clinical records.</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="overview-sec sec-4">
+                        <!-- Image Library Section -->
+                        <div class="overview-sec sec-image-library">
                             <h3 class="sec-heading">View Image Library</h3>
-                            <div class="custom-carousel-wrapper">
-                                <button class="carousel-nav-btn prev-btn" id="library-prev"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
-                                <div class="custom-carousel-track" id="library-track">
-                                    <img src="Media/Card Images/Card Image 1.jpg" alt="Library Image 1" class="carousel-item">
-                                    <img src="Media/Card Images/Card Image 2.jpg" alt="Library Image 2" class="carousel-item">
-                                    <img src="Media/Card Images/Card Image 3.jpg" alt="Library Image 3" class="carousel-item">
-                                    <img src="Media/Card Images/Card Image 4.jpg" alt="Library Image 4" class="carousel-item">
-                                    <img src="Media/Card Images/Card Image 5.jpg" alt="Library Image 5" class="carousel-item">
-                                </div>
-                                <button class="carousel-nav-btn next-btn" id="library-next"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+                            <div class="image-library-grid">
+                                <div class="library-item"><img src="Media/Card Images/Card Image 1.jpg" alt="Patient intake UI"></div>
+                                <div class="library-item"><img src="Media/Card Images/Card Image 2.jpg" alt="AI workflow"></div>
+                                <div class="library-item"><img src="Media/Card Images/Card Image 3.jpg" alt="Dashboard view"></div>
+                                <div class="library-item"><img src="Media/Card Images/Card Image 4.jpg" alt="Mobile patient form"></div>
+                                <div class="library-item"><img src="Media/Card Images/Card Image 5.jpg" alt="Hospital staff interface"></div>
+                                <div class="library-item"><img src="Media/Card Images/Card Image 1.jpg" alt="Automation process"></div>
                             </div>
                         </div>
 
-                        <!-- Section 5 -->
-                        <div class="overview-sec sec-5">
+                        <!-- Client Stories Section -->
+                        <div class="overview-sec sec-client-stories">
                             <h3 class="sec-heading">Stories Shared by Client</h3>
-                            <div id="framer-testimonial-reel-container-static" style="width: 100%; height: 400px; position: relative;"></div>
+                            <div class="testimonial-card-single">
+                                <p class="quote">"The automated intake system revolutionized our front desk operations. Patients are seen faster, and our staff is no longer bogged down by manual paperwork. Delphi AI delivered exactly what we needed."</p>
+                                <div class="client-info">
+                                    <div class="client-avatar">SJ</div>
+                                    <div class="client-details">
+                                        <span class="client-name">Sarah Jenkins</span>
+                                        <span class="client-role">Director of Operations</span>
+                                        <span class="client-company">Metro Health Systems</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -405,6 +381,11 @@
                         <span
                             style="background: rgba(0,0,0,0.5); padding: 10px 20px; border-radius: 10px; color: #fff;">Engine
                             Map / AI Flow</span>
+                    </div>
+                </div>
+                <div id="tab-gallery" class="tab-pane hidden">
+                    <div class="placeholder-box">
+                        <span style="background: rgba(0,0,0,0.5); padding: 10px 20px; border-radius: 10px; color: #fff;">Gallery</span>
                     </div>
                 </div>
             </div>
