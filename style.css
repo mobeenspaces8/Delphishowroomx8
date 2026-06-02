@@ -4096,3 +4096,45 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 @media (max-width: 480px) {
     .process-grid-container { grid-template-columns: 1fr; }
 }
+
+/* --- GlowingBeam Button Effect (Primary Buttons) --- */
+.action-btn:not(.btn-secondary):not(.active):hover {
+    box-shadow: inset 0 0 15px rgba(233, 76, 23, 0.6), 0 15px 35px -10px rgba(233, 76, 23, 0.5) !important;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+.action-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+        105deg,
+        transparent 20%,
+        rgba(255, 255, 255, 0.1) 45%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0.1) 55%,
+        transparent 80%
+    );
+    background-size: 200% 100%;
+    background-position: 200% 0;
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.action-btn:not(.btn-secondary):not(.active):hover::after {
+    opacity: 1;
+    animation: beamGlareSweep 2s infinite linear;
+}
+
+@keyframes beamGlareSweep {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.action-btn:not(.btn-secondary):not(.active):hover::before {
+    opacity: 1 !important;
+    filter: blur(12px) !important;
+}
