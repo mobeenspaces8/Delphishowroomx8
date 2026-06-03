@@ -1,0 +1,824 @@
+﻿
+/* ================================================================
+   PRODUCTION-READY POLISH — Final Comprehensive Pass
+   Fixes, Animations, Micro-interactions, Spacing, Components
+   ================================================================ */
+
+/* ---------------------------------------------------------------
+   1. SCROLL-TO-TOP on screen change (via JS class trigger)
+--------------------------------------------------------------- */
+.screen-scroll-reset {
+  scroll-behavior: auto;
+}
+
+/* ---------------------------------------------------------------
+   2. CAP GRID — Fixed 4-col on large screens, responsive below
+--------------------------------------------------------------- */
+.cap-grid {
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 18px !important;
+}
+@media (max-width: 1300px) { .cap-grid { grid-template-columns: repeat(3, 1fr) !important; } }
+@media (max-width: 1000px) { .cap-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+@media (max-width: 650px)  { .cap-grid { grid-template-columns: 1fr !important; } }
+
+/* ---------------------------------------------------------------
+   3. CAP CARD — Fix height, stagger animation, hover glow line
+--------------------------------------------------------------- */
+.cap-card, .use-case-card {
+  height: 420px !important;
+  animation: cardStagger 0.5s cubic-bezier(0.25,1,0.5,1) both !important;
+}
+@keyframes cardStagger {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.cap-card:nth-child(1) { animation-delay: 0.04s !important; }
+.cap-card:nth-child(2) { animation-delay: 0.08s !important; }
+.cap-card:nth-child(3) { animation-delay: 0.12s !important; }
+.cap-card:nth-child(4) { animation-delay: 0.16s !important; }
+.cap-card:nth-child(5) { animation-delay: 0.20s !important; }
+.cap-card:nth-child(6) { animation-delay: 0.24s !important; }
+.cap-card:nth-child(7) { animation-delay: 0.28s !important; }
+.cap-card:nth-child(8) { animation-delay: 0.32s !important; }
+
+/* Orange left-border glow on hover */
+.cap-card::after, .use-case-card::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important; left: 0 !important; top: 0 !important;
+  width: 3px !important;
+  background: linear-gradient(to bottom, transparent, var(--accent), transparent) !important;
+  border-radius: 3px 0 0 3px !important;
+  opacity: 0 !important;
+  transition: opacity var(--tm) !important;
+  animation: none !important;
+  inset: auto 0 0 0 !important;
+  height: 100% !important;
+  width: 3px !important;
+  padding: 0 !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+  z-index: 4 !important;
+}
+.cap-card:hover::after, .use-case-card:hover::after {
+  opacity: 1 !important;
+  animation: none !important;
+}
+/* Remove old conic-gradient border animation that made cards look glitchy */
+.cap-card::before, .use-case-card::before {
+  opacity: 0 !important;
+  display: none !important;
+}
+.cap-card:hover::before, .use-case-card:hover::before {
+  opacity: 0 !important;
+  animation: none !important;
+}
+
+/* Card hover bottom gradient accent */
+.cap-card:hover, .use-case-card:hover {
+  border-color: rgba(233,76,23,0.35) !important;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(233,76,23,0.1), 0 0 30px rgba(233,76,23,0.08) !important;
+  transform: translateY(-6px) !important;
+}
+
+/* Card chip tags (action-btn style chips in subtitle-buttons) */
+.subtitle-buttons .action-btn {
+  padding: 4px 12px !important;
+  font-size: 0.75rem !important;
+  border-radius: 30px !important;
+  background: rgba(233,76,23,0.12) !important;
+  border: 1px solid rgba(233,76,23,0.25) !important;
+  color: rgba(255,255,255,0.7) !important;
+  font-weight: 400 !important;
+  cursor: default !important;
+  pointer-events: none !important;
+  animation: none !important;
+  transform: none !important;
+}
+.subtitle-buttons .action-btn:hover {
+  transform: none !important;
+  animation: none !important;
+  box-shadow: none !important;
+  background: rgba(233,76,23,0.12) !important;
+  border-color: rgba(233,76,23,0.25) !important;
+  color: rgba(255,255,255,0.7) !important;
+}
+
+/* ---------------------------------------------------------------
+   4. FILTER SECTION — Improved select + search alignment
+--------------------------------------------------------------- */
+.filter-group {
+  gap: 10px !important;
+  align-items: center !important;
+}
+.search-group {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+.search-input-wrapper {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+}
+.search-input-wrapper svg {
+  position: absolute !important;
+  left: 11px !important;
+  color: var(--text-muted) !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+}
+.search-input-wrapper input {
+  padding-left: 36px !important;
+  min-width: 200px !important;
+  font-size: 0.875rem !important;
+}
+.search-input-wrapper input:focus {
+  border-color: var(--accent) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px var(--accent-dim) !important;
+}
+#clear-filters {
+  padding: 9px 16px !important;
+  font-size: 0.82rem !important;
+  border-radius: var(--radius-sm) !important;
+  background: rgba(255,255,255,0.04) !important;
+  border: 1px solid var(--border-mid) !important;
+  color: var(--text-secondary) !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  transition: all var(--tf) !important;
+  font-family: inherit !important;
+  animation: none !important;
+  transform: none !important;
+}
+#clear-filters:hover {
+  background: rgba(233,76,23,0.1) !important;
+  border-color: rgba(233,76,23,0.3) !important;
+  color: var(--accent) !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+/* ---------------------------------------------------------------
+   5. PAGINATION — Consistent pill sizing
+--------------------------------------------------------------- */
+.pagination-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  margin-top: 40px !important;
+  padding-bottom: 20px !important;
+}
+.page-btn {
+  height: 36px !important;
+  min-width: 90px !important;
+  padding: 0 16px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(255,255,255,0.04) !important;
+  border: 1px solid var(--border-mid) !important;
+  color: var(--text-secondary) !important;
+  border-radius: var(--radius-sm) !important;
+  font-family: inherit !important;
+  font-size: 0.875rem !important;
+  cursor: pointer !important;
+  transition: all var(--tf) !important;
+  animation: none !important;
+  transform: none !important;
+}
+.page-btn:hover:not(:disabled) {
+  background: rgba(233,76,23,0.1) !important;
+  border-color: rgba(233,76,23,0.35) !important;
+  color: var(--accent) !important;
+  transform: none !important;
+  animation: none !important;
+}
+.page-btn:disabled {
+  opacity: 0.3 !important;
+  cursor: not-allowed !important;
+}
+.page-num {
+  width: 36px !important;
+  height: 36px !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(255,255,255,0.04) !important;
+  border: 1px solid var(--border-mid) !important;
+  color: var(--text-secondary) !important;
+  border-radius: var(--radius-sm) !important;
+  font-family: inherit !important;
+  font-size: 0.875rem !important;
+  cursor: pointer !important;
+  transition: all var(--tf) !important;
+  animation: none !important;
+}
+.page-num:hover {
+  background: rgba(233,76,23,0.1) !important;
+  border-color: rgba(233,76,23,0.35) !important;
+  color: var(--accent) !important;
+  transform: none !important;
+  animation: none !important;
+}
+.page-num.active {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(233,76,23,0.4) !important;
+}
+
+/* ---------------------------------------------------------------
+   6. BREADCRUMBS — Consistent styling across all screens
+--------------------------------------------------------------- */
+.breadcrumbs {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  flex-wrap: wrap !important;
+}
+.bc-crumb {
+  font-size: 0.82rem !important;
+  color: var(--text-muted) !important;
+  font-weight: 400 !important;
+  transition: color var(--tf) !important;
+}
+.bc-crumb.bc-link {
+  cursor: pointer !important;
+}
+.bc-crumb.bc-link:hover {
+  color: var(--accent) !important;
+}
+.bc-crumb.bc-current {
+  color: var(--text-secondary) !important;
+  font-weight: 500 !important;
+}
+.bc-sep {
+  font-size: 0.8rem !important;
+  color: var(--text-muted) !important;
+  opacity: 0.5 !important;
+  user-select: none !important;
+}
+
+/* ---------------------------------------------------------------
+   7. BACK NAV BUTTON — Consistent, clean
+--------------------------------------------------------------- */
+.back-nav-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  background: transparent !important;
+  border: none !important;
+  color: var(--text-secondary) !important;
+  font-size: 0.85rem !important;
+  font-family: inherit !important;
+  cursor: pointer !important;
+  padding: 6px 10px 6px 6px !important;
+  border-radius: var(--radius-sm) !important;
+  transition: all var(--tf) !important;
+  animation: none !important;
+  transform: none !important;
+}
+.back-nav-btn:hover {
+  color: var(--accent) !important;
+  background: var(--accent-dim) !important;
+  transform: none !important;
+  animation: none !important;
+}
+.back-nav-btn svg {
+  transition: transform var(--tf) !important;
+}
+.back-nav-btn:hover svg {
+  transform: translateX(-3px) !important;
+}
+.header-subnav {
+  min-height: 40px !important;
+  align-items: center !important;
+}
+
+/* ---------------------------------------------------------------
+   8. HEALTHCARE HERO — Quick link pill buttons
+--------------------------------------------------------------- */
+.quick-links {
+  display: flex !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+  margin-top: 8px !important;
+}
+.quick-link-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 8px 18px !important;
+  border-radius: 30px !important;
+  background: rgba(255,255,255,0.04) !important;
+  border: 1px solid var(--border-mid) !important;
+  color: var(--text-secondary) !important;
+  font-size: 0.85rem !important;
+  font-family: inherit !important;
+  cursor: pointer !important;
+  transition: all var(--tf) !important;
+  white-space: nowrap !important;
+  animation: none !important;
+  transform: none !important;
+}
+.quick-link-btn:hover {
+  background: rgba(233,76,23,0.1) !important;
+  border-color: rgba(233,76,23,0.35) !important;
+  color: #fff !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+/* ---------------------------------------------------------------
+   9. DOT PULSE animation in cap-header
+--------------------------------------------------------------- */
+.cap-header .dot {
+  animation: dotPulse 2s ease-in-out infinite !important;
+}
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 6px rgba(233,76,23,0.6); }
+  50%       { box-shadow: 0 0 16px rgba(233,76,23,1), 0 0 28px rgba(233,76,23,0.4); }
+}
+
+/* ---------------------------------------------------------------
+   10. DEEP DIVE — Better Hero layout + tabs
+--------------------------------------------------------------- */
+.deep-dive-hero {
+  padding: 36px 64px 20px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  gap: 32px !important;
+  flex-wrap: wrap !important;
+}
+.hero-left-content {
+  flex: 1 !important;
+  min-width: 280px !important;
+}
+.deep-dive-hero h1 {
+  font-size: 2.4rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.15 !important;
+  margin-bottom: 12px !important;
+}
+.deep-dive-hero p {
+  font-size: 1rem !important;
+  color: var(--text-secondary) !important;
+  line-height: 1.65 !important;
+  margin-bottom: 16px !important;
+  max-width: 600px !important;
+}
+
+.dd-tab {
+  font-family: inherit !important;
+  font-size: 0.92rem !important;
+  font-weight: 400 !important;
+  padding: 12px 4px !important;
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  color: var(--text-muted) !important;
+  transition: color var(--tf) !important;
+  position: relative !important;
+  border-radius: 0 !important;
+  animation: none !important;
+  transform: none !important;
+  white-space: nowrap !important;
+}
+.dd-tab:hover { color: var(--text-primary) !important; transform: none !important; animation: none !important; }
+.dd-tab.active { color: var(--accent) !important; font-weight: 600 !important; }
+.dd-tab.active::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -1px !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 3px !important;
+  background: var(--accent) !important;
+  border-radius: 3px 3px 0 0 !important;
+  box-shadow: 0 0 12px rgba(233,76,23,0.6) !important;
+}
+.deep-dive-tabs {
+  display: flex !important;
+  gap: 28px !important;
+  padding: 0 64px !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+  overflow-x: auto !important;
+  scrollbar-width: none !important;
+}
+.deep-dive-tabs::-webkit-scrollbar { display: none !important; }
+.deep-dive-content {
+  padding: 32px 64px 60px !important;
+}
+
+/* ---------------------------------------------------------------
+   11. TAB PANE — Smooth fade-in
+--------------------------------------------------------------- */
+.tab-pane:not(.hidden) {
+  animation: tabFadeSlide 0.3s cubic-bezier(0.25,1,0.5,1) both !important;
+}
+@keyframes tabFadeSlide {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.practice-pane.active {
+  animation: tabFadeSlide 0.3s cubic-bezier(0.25,1,0.5,1) both !important;
+}
+
+/* ---------------------------------------------------------------
+   12. OVERVIEW BREAKDOWN ROWS
+--------------------------------------------------------------- */
+.overview-sec.content-breakdown {
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  backdrop-filter: none !important;
+}
+.breakdown-row {
+  display: grid !important;
+  grid-template-columns: 220px 1fr !important;
+  gap: 24px !important;
+  padding: 24px 0 !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+  align-items: start !important;
+}
+.breakdown-row:last-child { border-bottom: none !important; }
+.breakdown-left h4 {
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: var(--accent) !important;
+  padding-top: 3px !important;
+}
+.breakdown-right p {
+  font-size: 0.93rem !important;
+  color: var(--text-secondary) !important;
+  line-height: 1.65 !important;
+  margin: 0 !important;
+}
+
+/* ---------------------------------------------------------------
+   13. EXTERNAL ACTION BUTTONS (Demo, Prototype, Watch)
+--------------------------------------------------------------- */
+.top-action-bar {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  gap: 8px !important;
+}
+.external-action-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 10px 20px !important;
+  border-radius: 30px !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  transition: all var(--tf) !important;
+  font-family: inherit !important;
+  background: var(--accent) !important;
+  color: #fff !important;
+  border: 1px solid transparent !important;
+  box-shadow: 0 4px 14px rgba(233,76,23,0.3) !important;
+}
+.external-action-btn:hover {
+  background: #d43e0d !important;
+  box-shadow: 0 6px 20px rgba(233,76,23,0.45) !important;
+  transform: translateY(-2px) !important;
+}
+.external-action-btn.btn-secondary {
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid var(--border-mid) !important;
+  color: var(--text-secondary) !important;
+  box-shadow: none !important;
+}
+.external-action-btn.btn-secondary:hover {
+  background: rgba(255,255,255,0.1) !important;
+  border-color: rgba(255,255,255,0.2) !important;
+  color: #fff !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ---------------------------------------------------------------
+   14. PROCESS CARD — Image click opens lightbox
+--------------------------------------------------------------- */
+.process-card img {
+  width: 100% !important;
+  border-radius: var(--radius-sm) !important;
+  cursor: zoom-in !important;
+  transition: all var(--tf) !important;
+}
+.process-card img:hover {
+  transform: scale(1.02) !important;
+}
+
+/* ---------------------------------------------------------------
+   15. OVERVIEW GALLERY / MOCKUP PREVIEW
+--------------------------------------------------------------- */
+.overview-mockup-preview {
+  border-radius: var(--radius-xl) !important;
+  overflow: hidden !important;
+  min-height: 320px !important;
+}
+
+/* ---------------------------------------------------------------
+   16. HEATHECARE LANDING — Cap header spacing
+--------------------------------------------------------------- */
+.cap-header {
+  margin-bottom: 16px !important;
+}
+.cap-header h2 {
+  font-size: 1.4rem !important;
+}
+
+/* ---------------------------------------------------------------
+   17. SCREENS — Scrollbar thin styling
+--------------------------------------------------------------- */
+#screen-landing, #screen-deep-dive, #screen-frameworks, #screen-data-models, #screen-healthcare-frameworks {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(255,255,255,0.08) transparent !important;
+}
+#screen-landing::-webkit-scrollbar,
+#screen-deep-dive::-webkit-scrollbar,
+#screen-frameworks::-webkit-scrollbar,
+#screen-data-models::-webkit-scrollbar,
+#screen-healthcare-frameworks::-webkit-scrollbar {
+  width: 5px !important;
+}
+#screen-landing::-webkit-scrollbar-thumb,
+#screen-deep-dive::-webkit-scrollbar-thumb,
+#screen-frameworks::-webkit-scrollbar-thumb,
+#screen-data-models::-webkit-scrollbar-thumb,
+#screen-healthcare-frameworks::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1) !important;
+  border-radius: 10px !important;
+}
+
+/* ---------------------------------------------------------------
+   18. ACTION BUTTONS — Disable beam animation on non-interactive
+       buttons to avoid performance issues
+--------------------------------------------------------------- */
+.action-btn:not(:hover):not(.active) {
+  animation: none !important;
+}
+
+/* Quick-link and clear-filters should NOT get the beam animation */
+.quick-link-btn, #clear-filters, .page-btn, .page-num, .back-nav-btn, .dd-tab, .practice-tab, .external-action-btn {
+  animation: none !important;
+}
+.quick-link-btn:hover, #clear-filters:hover, .page-btn:hover, .page-num:hover, .back-nav-btn:hover, .dd-tab:hover, .practice-tab:hover, .external-action-btn:hover {
+  animation: none !important;
+}
+
+/* ---------------------------------------------------------------
+   19. HERO — Full-width left col alignment fix
+--------------------------------------------------------------- */
+.hero-left-col.full-width {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+.no-right-col {
+  grid-template-columns: 1fr !important;
+}
+.hc-hero.landing-hero.no-right-col {
+  min-height: 140px !important;
+  padding: 48px 64px 28px !important;
+}
+.hc-hero h1 {
+  font-size: 2.8rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  margin-bottom: 12px !important;
+}
+.hc-hero p {
+  font-size: 1rem !important;
+  line-height: 1.65 !important;
+  color: var(--text-secondary) !important;
+  max-width: 700px !important;
+  margin-bottom: 20px !important;
+}
+
+/* ---------------------------------------------------------------
+   20. TESTIMONIAL CARD — Better visual hierarchy
+--------------------------------------------------------------- */
+.premium-testimonial-card {
+  background: rgba(10,10,16,0.7) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-xl) !important;
+  padding: 36px 40px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  backdrop-filter: blur(20px) !important;
+  transition: all var(--tm) !important;
+}
+.quote-icon {
+  font-family: Georgia, serif !important;
+  font-size: 5rem !important;
+  color: var(--accent) !important;
+  opacity: 0.4 !important;
+  line-height: 0.7 !important;
+  display: block !important;
+  margin-bottom: 16px !important;
+}
+.premium-quote {
+  font-size: 1.05rem !important;
+  color: rgba(255,255,255,0.8) !important;
+  line-height: 1.75 !important;
+  font-style: italic !important;
+  margin-bottom: 28px !important;
+}
+
+/* ---------------------------------------------------------------
+   21. OVERVIEW BOTTOM ROW — Fix layout
+--------------------------------------------------------------- */
+.overview-bottom-row {
+  display: flex !important;
+  gap: 24px !important;
+}
+
+/* ---------------------------------------------------------------
+   22. LIGHTBOX — Smooth open/close with scale
+--------------------------------------------------------------- */
+.lightbox-modal {
+  transition: opacity 0.25s ease, visibility 0.25s ease !important;
+}
+.lightbox-modal.hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  display: flex !important;
+}
+.lightbox-content {
+  transition: transform 0.4s cubic-bezier(0.25,1,0.5,1) !important;
+  cursor: grab !important;
+}
+.lightbox-content:active { cursor: grabbing !important; }
+.lightbox-content img, .lightbox-content video {
+  max-width: 88vw !important;
+  max-height: 80vh !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.8) !important;
+  user-select: none !important;
+}
+
+/* Overlay click area for lightbox */
+.lightbox-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: -1 !important;
+  cursor: zoom-out !important;
+}
+
+/* ---------------------------------------------------------------
+   23. HEATHECARE FRAMEWORKS — full-width layout fix
+--------------------------------------------------------------- */
+.hc-frameworks-layout .practices-main-content {
+  width: 100% !important;
+  padding: 32px 44px !important;
+}
+
+/* ---------------------------------------------------------------
+   24. GLOBAL BUTTON ANIMATION RESET — Remove unwanted scale
+       on non-interactive buttons
+--------------------------------------------------------------- */
+.action-btn:not(:hover) {
+  transform: none !important;
+}
+.btn-demo, .btn-proto {
+  padding: 8px 14px !important;
+  font-size: 0.8rem !important;
+  border-radius: 8px !important;
+  font-family: inherit !important;
+  cursor: pointer !important;
+  transition: all var(--tf) !important;
+  border: 1px solid var(--border-mid) !important;
+  animation: none !important;
+}
+.btn-demo {
+  background: var(--accent) !important;
+  color: #fff !important;
+  border-color: var(--accent) !important;
+}
+.btn-demo:hover { background: #d43e0d !important; transform: none !important; }
+.btn-proto {
+  background: rgba(255,255,255,0.06) !important;
+  color: var(--text-secondary) !important;
+}
+.btn-proto:hover { background: rgba(255,255,255,0.1) !important; color: #fff !important; transform: none !important; }
+
+/* Card action row */
+.card-actions {
+  display: flex !important;
+  gap: 8px !important;
+  margin-top: 12px !important;
+}
+
+/* ---------------------------------------------------------------
+   25. RESPONSIVE — Fine-tune at 1100px and below
+--------------------------------------------------------------- */
+@media (max-width: 1100px) {
+  .hc-hero.landing-hero.no-right-col { padding: 36px 40px 20px !important; }
+  .deep-dive-hero { padding: 28px 40px 16px !important; }
+  .deep-dive-tabs { padding: 0 40px !important; }
+  .deep-dive-content { padding: 28px 40px 50px !important; }
+  .breakdown-row { grid-template-columns: 160px 1fr !important; }
+}
+@media (max-width: 768px) {
+  .hc-hero.landing-hero.no-right-col { padding: 28px 24px !important; }
+  .deep-dive-hero { padding: 24px !important; flex-direction: column !important; }
+  .top-action-bar { align-items: flex-start !important; }
+  .deep-dive-tabs { padding: 0 24px !important; gap: 20px !important; }
+  .deep-dive-content { padding: 20px 24px 40px !important; }
+  .breakdown-row { grid-template-columns: 1fr !important; gap: 6px !important; }
+  .breakdown-row { padding: 16px 0 !important; }
+}
+
+/* ---------------------------------------------------------------
+   26. FIX — Ensure hidden truly hides (override lightbox flex)
+--------------------------------------------------------------- */
+.lightbox-modal.hidden {
+  display: flex !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* ---------------------------------------------------------------
+   27. CARD chips in use case grid (category tags)
+--------------------------------------------------------------- */
+.card-chips {
+  display: flex !important;
+  gap: 6px !important;
+  flex-wrap: wrap !important;
+  margin-bottom: 10px !important;
+}
+.card-chip {
+  font-size: 0.7rem !important;
+  padding: 3px 9px !important;
+  border-radius: 20px !important;
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-muted) !important;
+}
+
+/* ---------------------------------------------------------------
+   28. HOVER OVERLAY on gallery images
+--------------------------------------------------------------- */
+.hover-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(0,0,0,0.3) !important;
+  opacity: 0 !important;
+  transition: opacity var(--tm) !important;
+  border-radius: inherit !important;
+}
+.hover-overlay:hover, *:hover > .hover-overlay {
+  opacity: 1 !important;
+}
+
+/* ---------------------------------------------------------------
+   29. SCREEN HEALTHCARE FRAMEWORKS — no-sidebar layout
+--------------------------------------------------------------- */
+#screen-healthcare-frameworks .practices-layout {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+  padding: 0 !important;
+}
+#screen-healthcare-frameworks .practices-main-content {
+  overflow-y: visible !important;
+  padding: 32px 64px !important;
+}
+#screen-healthcare-frameworks {
+  overflow-y: auto !important;
+}
+
+/* ---------------------------------------------------------------
+   30. ICON BUTTON hover state 
+--------------------------------------------------------------- */
+.icon-btn {
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all var(--tf) !important;
+}
+.icon-btn:hover {
+  background: rgba(255,255,255,0.06) !important;
+  color: #fff !important;
+}

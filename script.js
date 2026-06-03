@@ -394,7 +394,10 @@ function goBackOneScreen() {
 function openScreen(screenId) {
     hideAllScreens();
     const screen = document.getElementById(screenId);
-    if(screen) screen.classList.remove('hidden');
+    if(screen) {
+        screen.classList.remove('hidden');
+        window.scrollTo(0, 0);
+    }
 }
 
 function showHealthcareDetails() {
@@ -406,6 +409,7 @@ function showHealthcareDetails() {
     const mainContainer = document.getElementById('main-container');
     if (mainContainer) mainContainer.classList.add('hidden');
     document.body.style.overflowY = 'hidden'; 
+    window.scrollTo(0, 0);
     
     // Render capabilities on open
     currentPage = 1;
@@ -539,7 +543,10 @@ if(btnNextPage) btnNextPage.addEventListener('click', () => { currentPage++; ren
 
 function openDeepDiveScreen(ucId) {
     hideAllScreens();
-    if (screenDeepDive) screenDeepDive.classList.remove('hidden');
+    if (screenDeepDive) {
+        screenDeepDive.classList.remove('hidden');
+        window.scrollTo(0, 0);
+    }
     
     // We navigate to Automated Patient Intake by default as requested.
     // Breadcrumbs update
@@ -1466,3 +1473,56 @@ document.addEventListener('DOMContentLoaded', () => {
         new LightboxGallery('patient-intake-gallery', patientIntakeMedia);
     }
 });
+
+
+
+// Data Models Logic
+const dataModels = {
+    'model-1': {
+        title: 'Patient Journey Analytics',
+        desc: 'Comprehensive data architecture mapping the end-to-end patient lifecycle, integrating clinical, financial, and operational touchpoints for holistic predictive modeling.',
+        img: 'Media/Healthcare Services/tech_architecture.png'
+    },
+    'model-2': {
+        title: 'Clinical Risk Stratification',
+        desc: 'Advanced statistical and machine learning models designed to identify at-risk patient populations early, enabling proactive care interventions and resource allocation.',
+        img: 'Media/Healthcare Services/ai_engine_map.png'
+    },
+    'model-3': {
+        title: 'Revenue Cycle Optimization',
+        desc: 'Data model predicting claim denials and identifying revenue leakage points by analyzing historical billing patterns, payer rules, and clinical documentation.',
+        img: 'Media/Healthcare Services/tech_architecture.png'
+    },
+    'model-4': {
+        title: 'Supply Chain Demand Forecasting',
+        desc: 'Predictive models for optimizing inventory levels of critical medical supplies, minimizing stockouts, and reducing holding costs through automated procurement triggers.',
+        img: 'Media/Healthcare Services/ai_engine_map.png'
+    }
+};
+
+function showDataModel(modelId, element) {
+    // Update active class on nav
+    const navItems = document.querySelectorAll('#data-models-nav li');
+    navItems.forEach(item => item.classList.remove('active'));
+    if (element) {
+        element.classList.add('active');
+    }
+
+    // Update content
+    const model = dataModels[modelId];
+    if (model) {
+        document.getElementById('data-model-title').innerText = model.title;
+        document.getElementById('data-model-desc').innerText = model.desc;
+        document.getElementById('data-model-img').src = model.img;
+        
+        // Add a small fade animation
+        const contentArea = document.querySelector('#screen-data-models .practices-main-content');
+        if (contentArea) {
+            contentArea.style.opacity = '0.5';
+            setTimeout(() => {
+                contentArea.style.opacity = '1';
+                contentArea.style.transition = 'opacity 0.3s ease';
+            }, 50);
+        }
+    }
+}

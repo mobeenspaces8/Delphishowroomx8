@@ -74,11 +74,17 @@
                     <div class="service-card" data-index="9"></div>
                 </div>
                 
-                <!-- Best Practices Action Button -->
-                <button class="action-btn btn-secondary" style="position: absolute; bottom: 8%; left: 50%; transform: translateX(-50%); z-index: 100; font-size: 1.1rem; padding: 12px 24px; pointer-events: auto; display: flex; align-items: center; gap: 8px;" onclick="showBestPracticesDetails()">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
-                    Best Practices
-                </button>
+                <!-- Action Buttons Container -->
+                <div style="position: absolute; bottom: 8%; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; gap: 16px; pointer-events: auto;">
+                    <button class="action-btn btn-secondary" style="font-size: 1.1rem; padding: 12px 24px; display: flex; align-items: center; gap: 8px;" onclick="showBestPracticesDetails()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+                        Practices
+                    </button>
+                    <button class="action-btn btn-secondary" style="font-size: 1.1rem; padding: 12px 24px; display: flex; align-items: center; gap: 8px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cpu"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
+                        Engine
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -239,18 +245,32 @@
                     </nav>
                 </div>
             </header>
-            
-            <div class="hc-hero landing-hero no-right-col" style="min-height: auto; padding-top: 40px; padding-bottom: 40px;">
-                <div class="hero-left-col full-width align-left">
-                    <h1>Data Models</h1>
-                    <p>Coming Soon. This section is currently under development.</p>
+            <div class="practices-layout">
+                <!-- Left Sidebar -->
+                <div class="practices-sidebar">
+                    <div class="sidebar-title">Data Models <span>Library</span></div>
+                    <ul class="sidebar-nav" id="data-models-nav">
+                        <li class="active" onclick="showDataModel('model-1', this)">Patient Journey Analytics</li>
+                        <li onclick="showDataModel('model-2', this)">Clinical Risk Stratification</li>
+                        <li onclick="showDataModel('model-3', this)">Revenue Cycle Optimization</li>
+                        <li onclick="showDataModel('model-4', this)">Supply Chain Demand Forecasting</li>
+                    </ul>
                 </div>
-            </div>
-            
-            <div class="placeholder-content" style="margin-top: 50px;">
-                <button class="action-btn" onclick="goBackOneScreen()">Go Back</button>
-            </div>
-        </section>
+
+                <!-- Right Main Content -->
+                <div class="practices-main-content">
+                    <div class="practice-header">
+                        <div class="header-title-row">
+                            <h2 id="data-model-title">Patient Journey Analytics</h2>
+                        </div>
+                        <p class="practice-description" id="data-model-desc">Comprehensive data architecture mapping the end-to-end patient lifecycle, integrating clinical, financial, and operational touchpoints for holistic predictive modeling.</p>
+                    </div>
+
+                    <div class="diagram-container" style="margin-top: 0;">
+                        <img id="data-model-img" src="Media/Healthcare Services/tech_architecture.png" alt="Data Model" style="width:100%; max-height: 70vh; object-fit: contain; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;" onclick="openLightbox(this.src, 'image')">
+                    </div>
+                </div>
+            </div>        </section>
         <section id="screen-frameworks" class="hidden screen-practices">
             <header class="universal-header">
                 <div class="header-brand-bar">
@@ -859,7 +879,9 @@
                 <div id="tab-tech-arch" class="tab-pane hidden">
                     <div class="tab-header-text">
                         <h2>Automated Patient Intake &#8212; Architecture</h2>
-                        <p>High-level architecture showing how patient intake documents move through upload channels, OCR processing, AI extraction, validation, review workflow, and downstream healthcare systems.</p></div><div class="diagram-container">
+                        <p>High-level architecture showing how patient intake documents move through upload channels, OCR processing, AI extraction, validation, review workflow, and downstream healthcare systems.</p>
+                    </div>
+                    <div class="diagram-container">
                         <img src="Media/Healthcare Services/tech_architecture.png" alt="Tech Architecture Diagram" style="width:100%; max-height: 70vh; object-fit: contain; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;" onclick="openLightbox('Media/Healthcare Services/tech_architecture.png', 'image')">
                     </div>
                 </div>
@@ -955,13 +977,6 @@
     </div>
 
     <!-- Custom Script -->
-    <!-- Lightbox Modal for Fullscreen Image View -->
-    <div id="image-lightbox" class="lightbox-modal hidden">
-        <button id="lightbox-close" class="lightbox-close-btn">&times;</button>
-        <img id="lightbox-img" src="" alt="Fullscreen View">
-        <div id="lightbox-caption" class="lightbox-caption"></div>
-    </div>
-
     <script src="script.js"></script>
 </body>
 
